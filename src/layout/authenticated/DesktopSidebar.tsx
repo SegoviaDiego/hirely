@@ -1,5 +1,7 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
+import appLogo from '@/public/assets/images/logo.png';
 import { classNames } from '@/utils/ClassNames';
 
 type DesktopSidebarProps = {
@@ -10,12 +12,8 @@ const DesktopSidebar = ({ navigation }: DesktopSidebarProps) => {
   return (
     <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
       <div className="flex grow flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5">
-        <div className="flex shrink-0 items-center px-4">
-          <img
-            className="h-8 w-auto"
-            src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
-            alt="Workflow"
-          />
+        <div className="flex items-center px-4" style={{ width: 110 }}>
+          <Image src={appLogo} alt="Hirely" />
         </div>
         <div className="mt-5 flex grow flex-col">
           <nav className="flex-1 space-y-1 px-2 pb-4">

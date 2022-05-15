@@ -1,6 +1,11 @@
 import { ReactNode, useState } from 'react';
 
-import { HomeIcon } from '@heroicons/react/outline';
+import {
+  ClipboardListIcon,
+  CogIcon,
+  UserGroupIcon,
+  ViewGridIcon,
+} from '@heroicons/react/outline';
 
 import { MainContainer } from '@/layout/authenticated/MainContainer';
 import { SearchBar } from '@/layout/authenticated/SearchBar';
@@ -11,19 +16,13 @@ type AuthenticatedLayoutProps = {
 };
 
 const navigation = [
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'Team', href: '#', icon: HomeIcon, current: false },
-  { name: 'Projects', href: '#', icon: HomeIcon, current: false },
-  { name: 'Calendar', href: '#', icon: HomeIcon, current: false },
-  { name: 'Documents', href: '#', icon: HomeIcon, current: false },
-  { name: 'Reports', href: '#', icon: HomeIcon, current: false },
+  { name: 'Inicio', href: '#', icon: ViewGridIcon, current: true },
+  { name: 'Posiciones', href: '#', icon: ClipboardListIcon, current: false },
+  { name: 'Candidatxs', href: '#', icon: UserGroupIcon, current: false },
+  { name: 'Configuración', href: '#', icon: CogIcon, current: false },
 ];
 
-const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
-];
+const userNavigation = [{ name: 'Cerrar Sesión', href: '/auth/sign-out' }];
 
 const AuthenticatedLayout = ({ children }: AuthenticatedLayoutProps) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
