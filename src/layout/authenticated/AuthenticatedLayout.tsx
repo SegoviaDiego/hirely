@@ -6,6 +6,7 @@ import {
   UserGroupIcon,
   ViewGridIcon,
 } from '@heroicons/react/outline';
+import { useRouter } from 'next/router';
 
 import { MainContainer } from '@/layout/authenticated/MainContainer';
 import { SearchBar } from '@/layout/authenticated/SearchBar';
@@ -16,21 +17,41 @@ type AuthenticatedLayoutProps = {
 };
 
 const navigation = [
-  { name: 'Inicio', href: '#', icon: ViewGridIcon, current: true },
-  { name: 'Posiciones', href: '#', icon: ClipboardListIcon, current: false },
-  { name: 'Candidatxs', href: '#', icon: UserGroupIcon, current: false },
-  { name: 'Configuración', href: '#', icon: CogIcon, current: false },
+  { id: 1, name: 'Inicio', href: '/', icon: ViewGridIcon, current: true },
+  {
+    id: 2,
+    name: 'Posiciones',
+    href: '/positions/',
+    icon: ClipboardListIcon,
+    current: false,
+  },
+  {
+    id: 3,
+    name: 'Candidatxs',
+    href: '/candidates/',
+    icon: UserGroupIcon,
+    current: false,
+  },
+  {
+    id: 4,
+    name: 'Configuración',
+    href: '/configuration/',
+    icon: CogIcon,
+    current: false,
+  },
 ];
 
 const userNavigation = [{ name: 'Cerrar Sesión', href: '/auth/sign-out' }];
 
 const AuthenticatedLayout = ({ children }: AuthenticatedLayoutProps) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <div>
       <Sidebar
         navigation={navigation}
+        currentNav={router.asPath}
         setSidebarOpen={setSidebarOpen}
         sidebarOpen={sidebarOpen}
       />

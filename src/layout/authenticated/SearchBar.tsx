@@ -1,8 +1,8 @@
 import { Fragment } from 'react';
 
 import { Menu, Transition } from '@headlessui/react';
-import { BellIcon, MenuAlt2Icon } from '@heroicons/react/outline';
-import { SearchIcon } from '@heroicons/react/solid';
+import { MenuAlt2Icon } from '@heroicons/react/outline';
+import { ChevronDownIcon, SearchIcon } from '@heroicons/react/solid';
 
 import { classNames } from '@/utils/ClassNames';
 
@@ -18,7 +18,7 @@ type SearchBarProps = {
 
 const SearchBar = ({ userNavigation, setSidebarOpen }: SearchBarProps) => {
   return (
-    <div className="sticky top-0 z-10 flex h-16 shrink-0 bg-white shadow">
+    <div className="sticky top-0 z-10 flex h-20 shrink-0 bg-white shadow">
       <button
         type="button"
         className="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
@@ -33,14 +33,14 @@ const SearchBar = ({ userNavigation, setSidebarOpen }: SearchBarProps) => {
             <label htmlFor="search-field" className="sr-only">
               Search
             </label>
-            <div className="relative w-full text-gray-400 focus-within:text-gray-600">
-              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center">
+            <div className="relative flex w-full items-center text-gray-400 focus-within:text-gray-600">
+              <div className="pointer-events-none absolute inset-y-0 left-3 flex items-center">
                 <SearchIcon className="h-5 w-5" aria-hidden="true" />
               </div>
               <input
                 id="search-field"
-                className="block h-full w-full border-transparent py-2 pl-8 pr-3 text-gray-900 placeholder:text-gray-500 focus:border-transparent focus:outline-none focus:ring-0 focus:placeholder:text-gray-400 sm:text-sm"
-                placeholder="Search"
+                className="block w-96 rounded-md border-transparent bg-gray-200 py-2 pl-10 pr-3 text-gray-900 placeholder:text-gray-500 focus:border-transparent focus:outline-none focus:ring-0 focus:placeholder:text-gray-400 sm:text-sm"
+                placeholder="Busqueda"
                 type="search"
                 name="search"
               />
@@ -48,24 +48,24 @@ const SearchBar = ({ userNavigation, setSidebarOpen }: SearchBarProps) => {
           </form>
         </div>
         <div className="ml-4 flex items-center md:ml-6">
-          <button
-            type="button"
-            className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-          >
-            <span className="sr-only">View notifications</span>
-            <BellIcon className="h-6 w-6" aria-hidden="true" />
-          </button>
+          <div>
+            <p className="text-base">Tim Cook</p>
+            <p className="text-sm text-gray-400">FL, USA</p>
+          </div>
 
           {/* Profile dropdown */}
           <Menu as="div" className="relative ml-3">
             <div>
               <Menu.Button className="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                 <span className="sr-only">Open user menu</span>
-                <img
-                  className="h-8 w-8 rounded-full"
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  alt=""
-                />
+                <div className="flex">
+                  <img
+                    className="h-8 w-8 rounded-full"
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    alt=""
+                  />
+                  <ChevronDownIcon className="w-6 text-gray-400" />
+                </div>
               </Menu.Button>
             </div>
             <Transition
