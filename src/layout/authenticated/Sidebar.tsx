@@ -5,9 +5,15 @@ type SidebarProps = {
   sidebarOpen: boolean;
   setSidebarOpen: (value: boolean) => void;
   navigation: any[];
+  currentNav: string;
 };
 
-const Sidebar = ({ navigation, setSidebarOpen, sidebarOpen }: SidebarProps) => {
+const Sidebar = ({
+  navigation,
+  setSidebarOpen,
+  sidebarOpen,
+  currentNav,
+}: SidebarProps) => {
   return (
     <>
       <MobileSidebar
@@ -15,7 +21,7 @@ const Sidebar = ({ navigation, setSidebarOpen, sidebarOpen }: SidebarProps) => {
         setSidebarOpen={setSidebarOpen}
         sidebarOpen={sidebarOpen}
       />
-      <DesktopSidebar navigation={navigation} />
+      <DesktopSidebar navigation={navigation} currentNav={currentNav} />
     </>
   );
 };
