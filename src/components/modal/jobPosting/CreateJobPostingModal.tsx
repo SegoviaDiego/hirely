@@ -25,8 +25,8 @@ export default function CreateJobPostingModal(
   const cancelButtonRef = useRef(null);
 
   const handleSuccess = () => {
+    setTimeout(() => setCurrentStep(1), 1000);
     setJobPostingOpen(false);
-    setCurrentStep(1);
   };
 
   return (
