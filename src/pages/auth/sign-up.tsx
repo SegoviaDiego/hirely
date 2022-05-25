@@ -45,8 +45,8 @@ const SignUp = () => {
       meta={<Meta title="Hirely" description="Your hiring buddy." />}
     >
       <div className="flex min-h-full">
-        <div className="flex flex-1 flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
-          <div className="mx-auto w-full max-w-sm lg:w-96">
+        <div className="flex flex-1 flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24 w-1/2">
+          <div className="w-full">
             <div>
               <Image src={appLogo} alt="Hirely" />
               <h1 className="mt-6 text-3xl font-extrabold text-gray-900">

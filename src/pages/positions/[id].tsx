@@ -1,15 +1,26 @@
 import { customStyles, technologiesOptions } from '@/constants/react-select';
 import { Meta } from '@/layout/Meta';
 import { Main } from '@/templates/Main';
+import Link from 'next/link';
 import { useState } from 'react';
 import ReactSelect from 'react-select';
 import makeAnimated from 'react-select/animated';
 
 const animatedComponents = makeAnimated();
 
+const dev = {
+  company: 'Mercado Libre',
+  title: 'Frontend Dev',
+  description: 'Frontend dev con conocimientos de React y NextJs',
+  benefits: 'Gym pago y obra social de primera linea',
+  requirements: 'Conocimiento de React y de SSR utilizando NextJs',
+  minWage: '1.500',
+  maxWage: '2.500',
+};
+
 const Position = () => {
   // @TODO: Redirect to sign-in or base path for authenticated users.
-  const [paymentMethod, setPaymentMethod] = useState(1);
+  const [paymentMethod, setPaymentMethod] = useState(2);
 
   return (
     <Main meta={<Meta title="Hirely" description="Your hiring buddy." />}>
@@ -23,6 +34,7 @@ const Position = () => {
             Empresa
           </label>
           <input
+            value={dev.company}
             type="text"
             name="name"
             id="name"
@@ -39,6 +51,7 @@ const Position = () => {
             Titulo
           </label>
           <input
+            value={dev.title}
             type="text"
             name="title"
             id="title"
@@ -73,6 +86,7 @@ const Position = () => {
             Descripcion
           </label>
           <input
+            value={dev.description}
             type="text"
             name="name"
             id="name"
@@ -122,9 +136,10 @@ const Position = () => {
             htmlFor="first-name"
             className="block text-sm font-medium text-gray-700"
           >
-            Descripcion
+            Beneficios
           </label>
           <textarea
+            value={dev.benefits}
             id="about"
             name="about"
             rows={4}
@@ -138,9 +153,10 @@ const Position = () => {
             htmlFor="first-name"
             className="block text-sm font-medium text-gray-700"
           >
-            Beneficios
+            Requisitos
           </label>
           <textarea
+            value={dev.requirements}
             id="about"
             name="about"
             rows={4}
@@ -245,6 +261,7 @@ const Position = () => {
                     <span className="text-gray-500 sm:text-sm">U$D</span>
                   </div>
                   <input
+                    value={dev.minWage}
                     type="text"
                     name="price"
                     id="price"
@@ -260,6 +277,7 @@ const Position = () => {
                       <span className="text-gray-500 sm:text-sm">U$D</span>
                     </div>
                     <input
+                      value={dev.maxWage}
                       type="text"
                       name="price"
                       id="price"
@@ -292,12 +310,14 @@ const Position = () => {
             <option>3 Meses</option>
           </select>
           <div className="flex justify-end mt-6">
-            <button
-              type="button"
-              className="mt-3 inline-flex w-56 justify-center rounded-3xl border bg-indigo-600 px-4 py-4 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:text-sm"
-            >
-              Ver candidatxs
-            </button>
+            <Link href="/positions">
+              <a
+                type="button"
+                className="mt-3 inline-flex w-56 justify-center rounded-3xl border bg-indigo-600 px-4 py-4 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:text-sm"
+              >
+                Ver candidatxs
+              </a>
+            </Link>
           </div>
         </div>
       </div>
