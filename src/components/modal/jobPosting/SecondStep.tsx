@@ -1,4 +1,9 @@
+import { customStyles, technologiesOptions } from '@/constants/react-select';
 import { Dialog } from '@headlessui/react';
+import ReactSelect from 'react-select';
+import makeAnimated from 'react-select/animated';
+
+const animatedComponents = makeAnimated();
 
 export default function SecondStep() {
   return (
@@ -49,20 +54,17 @@ export default function SecondStep() {
             <div className="w-full">
               <label
                 htmlFor="tecnologies"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 mb-2"
               >
                 Tecnologias
               </label>
-              <select
-                id="modality"
-                name="modality"
-                autoComplete="modality-name"
-                className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-              >
-                <option>React</option>
-                <option>Nodejs</option>
-                <option>Java</option>
-              </select>
+              <ReactSelect
+                closeMenuOnSelect={false}
+                components={animatedComponents}
+                isMulti
+                options={technologiesOptions}
+                styles={customStyles}
+              />
             </div>
           </div>
         </div>

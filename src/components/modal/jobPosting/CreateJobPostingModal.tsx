@@ -2,11 +2,11 @@ import { Dispatch, Fragment, SetStateAction, useRef, useState } from 'react';
 
 import { Dialog, Transition } from '@headlessui/react';
 
-import FirstStep from './firstStep';
 import FourthStep from './FourthStep';
 import SecondStep from './SecondStep';
 import SuccessStep from './SuccessStep';
 import ThirdStep from './ThirdStep';
+import FirstStep from './FirstStep';
 
 interface CreateJobPostingModalProps {
   isOpen: boolean;
@@ -60,7 +60,7 @@ export default function CreateJobPostingModal(
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+              <div className="relative rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
                 {currentStep === 1 && <FirstStep />}
                 {currentStep === 2 && <SecondStep />}
                 {currentStep === 3 && <ThirdStep />}
@@ -123,7 +123,7 @@ export default function CreateJobPostingModal(
                     </button>
                   )}
                 </div>
-              </Dialog.Panel>
+              </div>
             </Transition.Child>
           </div>
         </div>

@@ -24,7 +24,8 @@
     "next-seo": "^5.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-query": "^3.34.20"
+    "react-query": "^3.34.20",
+    "react-select": "^5.3.2"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^12.1.0",
