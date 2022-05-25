@@ -71,7 +71,7 @@ export default function CreateJobPostingModal(
                   />
                 )}
                 {currentStep === 5 && <SuccessStep />}
-                <div className="mt-6 bg-gray-50 px-4 py-3 sm:flex sm:px-6">
+                <div className="mt-6 bg-gray-50 px-4 py-3 sm:flex sm:px-6 rounded-b-lg">
                   {currentStep !== 5 ? (
                     <>
                       {currentStep === 1 ? (
