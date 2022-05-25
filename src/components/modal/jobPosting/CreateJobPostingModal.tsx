@@ -7,6 +7,7 @@ import SecondStep from './SecondStep';
 import SuccessStep from './SuccessStep';
 import ThirdStep from './ThirdStep';
 import FirstStep from './FirstStep';
+import Link from 'next/link';
 
 interface CreateJobPostingModalProps {
   isOpen: boolean;
@@ -113,14 +114,15 @@ export default function CreateJobPostingModal(
                       )}
                     </>
                   ) : (
-                    <button
-                      type="button"
-                      className="mt-3 inline-flex w-full justify-center rounded-2xl border bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-full sm:text-sm"
-                      onClick={() => handleSuccess()}
-                      ref={cancelButtonRef}
-                    >
-                      Ir al Detalle
-                    </button>
+                    <Link href="/positions/4">
+                      <a
+                        type="button"
+                        className="mt-3 inline-flex w-full justify-center rounded-2xl border bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-full sm:text-sm"
+                        ref={cancelButtonRef}
+                      >
+                        Ir al Detalle
+                      </a>
+                    </Link>
                   )}
                 </div>
               </div>

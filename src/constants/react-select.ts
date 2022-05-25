@@ -15,6 +15,8 @@ export const customStyles: StylesConfig = {
     ...styles,
     backgroundColor: 'white',
     borderColor: isFocused ? 'rgb(79 70 229)' : undefined,
+    paddingTop: '4px',
+    paddingBottom: '4px',
   }),
   option: (styles, { isDisabled, isFocused }) => {
     return {
