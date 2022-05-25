@@ -4,10 +4,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { Meta } from '@/layout/Meta';
-import { UnAuthenticatedMain } from '@/templates/UnAuthenticatedMain';
-
 import appImagen from '@/public/assets/images/imagenIngreso.png';
 import appLogo from '@/public/assets/images/logoIngreso.png';
+import { UnAuthenticatedMain } from '@/templates/UnAuthenticatedMain';
 
 const SignUp = () => {
   const router = useRouter();
