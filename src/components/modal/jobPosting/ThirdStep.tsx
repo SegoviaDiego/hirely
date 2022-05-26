@@ -9,7 +9,7 @@ export default function ThirdStep() {
             as="h3"
             className="text-lg font-medium leading-6 text-gray-900"
           >
-            Requisitos
+            Nuevo Puest de Trabajo
           </Dialog.Title>
           <div className="mt-6 w-full space-y-4">
             <div className="w-full">
@@ -17,7 +17,7 @@ export default function ThirdStep() {
                 htmlFor="first-name"
                 className="block text-sm font-medium text-gray-700"
               >
-                Descripcion
+                Requisitos
               </label>
               <textarea
                 id="about"
