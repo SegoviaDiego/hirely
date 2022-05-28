@@ -13,7 +13,7 @@ const DesktopSidebar = ({ navigation, currentNav }: DesktopSidebarProps) => {
   return (
     <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
       <div className="flex grow flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5">
-        <div className="flex items-center border-b-2 px-4 pb-5">
+        <div className="flex items-center border-b-2 px-4 pb-6">
           <Link href="/">
             <a className="w-1/3">
               <Image src={appLogo} alt="Hirely" />
