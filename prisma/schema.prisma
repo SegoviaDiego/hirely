@@ -11,15 +11,100 @@ generator client {
 }
 
 model User {
-  id            Int      @id @default(autoincrement())
-  email         String   @unique
-  password      String
-  name          String?
-  emailVerified DateTime?
-  image         String?
+  id                Int      @id @unique @default(autoincrement())
+  email             String   @unique
+  password          String
+  fullName          String
+  emailVerified     DateTime?
+  profilePictureURL String?
+
+  role UserRole
+  jobPostings       JobPosting[]
+}
+
+model JobPosting {
+  id           String                @id @unique @default(cuid())
+  title        String
+  description  String?
+  requirements String?
+  commodities  String?
+  usdMinSalary Decimal
+  usdMaxSalary Decimal
+  arsMinSalary Decimal
+  arsMaxSalary Decimal
+  authorId     Int
+
+  seniority    seniority
+  salaryType   salaryType
+  type         jobPostingType
+
+  candidates   CandidateJobPosting[]
+  techs        JobPostingTech[]
+  author       User                  @relation(fields: [authorId], references: [id])
+}
+
+model JobPostingTech {
+  id           String     @id @unique @default(cuid())
+  jobPostingId String
+  techId       String
+
+  jobPosting   JobPosting @relation(fields: [jobPostingId], references: [id])
+  tech         Tech       @relation(fields: [techId], references: [id])
+
+   @@unique([jobPostingId, techId], name: "uniqueJobPostingTech")
+}
+
+model Tech {
+  id             String           @id @unique @default(cuid())
+  title          String           @unique
+
+  JobPostingTech JobPostingTech[]
+}
+
+model Candidate {
+  id                 String                @id @unique @default(cuid())
+  fullName           String
+  email              String                @unique
+  profilePictureURL  String
+  seniority          seniority
+  salary             Decimal
+  education          String
+  experience         String
+
+  appliedJobPostings CandidateJobPosting[]
+}
+
+model CandidateJobPosting {
+  id           String     @id @unique @default(cuid())
+  candidateId  String
+  jobPostingId String
+
+  candidate    Candidate  @relation(fields: [candidateId], references: [id])
+  jobPosting   JobPosting @relation(fields: [jobPostingId], references: [id])
+
+  @@unique([jobPostingId, candidateId], name: "uniqueJobPostingCandidate")
 }
 
 enum UserRole {
   USER
   ADMIN
+}
+
+enum jobPostingType {
+  REMOTE
+  OFFICE
+  BOTH
+}
+
+enum seniority {
+  SENIOR
+  SEMISENIOR
+  JUNIOR
+  TRAINEE
+}
+
+enum salaryType {
+  ARS
+  USD
+  BOTH
 }
