@@ -6,9 +6,9 @@ type MainContainerProps = {
 
 const MainContainer = ({ children }: MainContainerProps) => {
   return (
-    <main className="flex-1">
-      <div className="py-6">
-        <div className="mx-auto max-w-7xl">{children}</div>
+    <main className="h-full w-full flex-1">
+      <div className="h-full w-full py-6">
+        <div className="mx-auto h-full w-full max-w-7xl">{children}</div>
       </div>
     </main>
   );

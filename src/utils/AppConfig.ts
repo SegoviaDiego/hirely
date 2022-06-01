@@ -1,6 +1,6 @@
 export const AppConfig = {
-  site_name: 'Oxymoron Stock',
-  title: 'Oxymoron Stock',
-  description: 'Manage your stock online',
+  site_name: 'Hirely',
+  title: 'Hirely',
+  description: 'Your hiring buddy',
   locale: 'en',
 };

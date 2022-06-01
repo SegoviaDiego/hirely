@@ -6,11 +6,11 @@ import { AppConfig } from '@/utils/AppConfig';
 class MyDocument extends Document {
   render() {
     return (
-      <Html lang={AppConfig.locale} className="h-full bg-gray-100">
+      <Html lang={AppConfig.locale} className="h-full w-full bg-gray-100">
         <Head>
           <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
         </Head>
-        <body className="h-full">
+        <body className="h-full w-full">
           <Main />
           <NextScript />
         </body>
