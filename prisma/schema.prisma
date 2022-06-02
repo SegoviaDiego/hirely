@@ -18,7 +18,7 @@ model User {
   emailVerified     DateTime?
   profilePictureURL String?
 
-  role UserRole
+  role              UserRole
   jobPostings       JobPosting[]
 }
 
@@ -75,9 +75,11 @@ model Candidate {
 }
 
 model CandidateJobPosting {
-  id           String     @id @unique @default(cuid())
-  candidateId  String
-  jobPostingId String
+  id                String     @id @unique @default(cuid())
+  candidateId       String
+  jobPostingId      String
+  candidateMatch    Decimal
+  organizationMatch Decimal
 
   candidate    Candidate  @relation(fields: [candidateId], references: [id])
   jobPosting   JobPosting @relation(fields: [jobPostingId], references: [id])
