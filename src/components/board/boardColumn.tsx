@@ -15,23 +15,23 @@ export type BoardColumnData = {
 
 const BoardColumn = ({ draggableProvided, column }: BoardColumnProps) => {
   return (
-    <div className="mx-2 h-full flex-1 overflow-hidden rounded-t-xl bg-zinc-100 p-5">
+    <div className="mx-2 flex h-full flex-1 flex-col overflow-hidden rounded-t-xl bg-zinc-100 p-5">
       <div className="flex h-8 w-full flex-row items-center">
         <div className="mr-2 h-2 w-2 rounded-full bg-indigo-500" />
         <h3 className="text-md mr-2 font-bold text-gray-900 sm:truncate">
-          {column.title}
+          {column?.title}
         </h3>
         <div className="flex h-5 w-5 items-center justify-center rounded-full bg-gray-500 text-xs">
-          {column.candidates.length}
+          {column?.candidates?.length || 0}
         </div>
       </div>
       <div className="mb-5 h-1 w-full bg-indigo-700"></div>
       <div
-        ref={draggableProvided.innerRef}
-        {...draggableProvided.droppableProps}
-        className="flex flex-col justify-center"
+        ref={draggableProvided?.innerRef}
+        {...draggableProvided?.droppableProps}
+        className="flex flex-1 flex-col items-center"
       >
-        {column.candidates.map((candidate, index) => (
+        {column?.candidates?.map((candidate, index) => (
           <Draggable
             key={`candidate-${candidate.id}`}
             draggableId={`candidate-${candidate.id}`}
@@ -43,6 +43,8 @@ const BoardColumn = ({ draggableProvided, column }: BoardColumnProps) => {
           </Draggable>
         ))}
       </div>
+      {/* TODO: Implement card placeholder */}
+      {draggableProvided.placeholder}
     </div>
   );
 };

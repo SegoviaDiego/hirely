@@ -10,6 +10,7 @@ import {
 import BoardColumn, { BoardColumnData } from '@/components/board/boardColumn';
 import reorder from '@/utils/ReorderArray';
 
+// TODO: Should come from backend.
 const mockColumns: BoardColumnData[] = [
   {
     title: 'CVs por revisar',
@@ -21,7 +22,11 @@ const mockColumns: BoardColumnData[] = [
         match: 63,
         role: 'Frontend Developer',
         profileImageURL:
-          'https://as01.epimg.net/meristation/imagenes/2021/10/06/noticias/1633514535_199538_1633514571_noticia_normal.jpg',
+          'https://www.themoviedb.org/t/p/w300_and_h450_bestv2/fBEucxECxGLKVHBznO0qHtCGiMO.jpg',
+        education: 'UBA, Ciencias de datos',
+        experience: '2 años de experiencia',
+        salary: 120000,
+        seniority: 'senior',
       },
       {
         id: 2,
@@ -29,7 +34,11 @@ const mockColumns: BoardColumnData[] = [
         match: 63,
         role: 'Frontend Developer',
         profileImageURL:
-          'https://as01.epimg.net/meristation/imagenes/2021/10/06/noticias/1633514535_199538_1633514571_noticia_normal.jpg',
+          'https://www.themoviedb.org/t/p/w300_and_h450_bestv2/kq5DDnqqofoRI0t6ddtRlsJnNPT.jpg',
+        education: 'UBA, Ciencias de datos',
+        experience: '2 años de experiencia',
+        salary: 120000,
+        seniority: 'senior',
       },
       {
         id: 3,
@@ -37,12 +46,16 @@ const mockColumns: BoardColumnData[] = [
         match: 63,
         role: 'Frontend Developer',
         profileImageURL:
-          'https://as01.epimg.net/meristation/imagenes/2021/10/06/noticias/1633514535_199538_1633514571_noticia_normal.jpg',
+          'https://www.themoviedb.org/t/p/w300_and_h450_bestv2/2RVyvc8YVqtfN0taqpYliaUoBem.jpg',
+        education: 'UBA, Ciencias de datos',
+        experience: '2 años de experiencia',
+        salary: 120000,
+        seniority: 'senior',
       },
     ],
   },
   {
-    title: 'CVs por revisar',
+    title: 'En evaluación',
     color: '#000',
     candidates: [
       {
@@ -51,12 +64,16 @@ const mockColumns: BoardColumnData[] = [
         match: 63,
         role: 'Frontend Developer',
         profileImageURL:
-          'https://as01.epimg.net/meristation/imagenes/2021/10/06/noticias/1633514535_199538_1633514571_noticia_normal.jpg',
+          'https://www.themoviedb.org/t/p/w300_and_h450_bestv2/ukmfsl59Isvn9odgzMWBidA3cmt.jpg',
+        education: 'UBA, Ciencias de datos',
+        experience: '2 años de experiencia',
+        salary: 120000,
+        seniority: 'senior',
       },
     ],
   },
   {
-    title: 'CVs por revisar',
+    title: 'Contratadxs',
     color: '#000',
     candidates: [
       {
@@ -65,7 +82,11 @@ const mockColumns: BoardColumnData[] = [
         match: 63,
         role: 'Frontend Developer',
         profileImageURL:
-          'https://as01.epimg.net/meristation/imagenes/2021/10/06/noticias/1633514535_199538_1633514571_noticia_normal.jpg',
+          'https://www.themoviedb.org/t/p/w300_and_h450_bestv2/ntwPvV4GKGGHO3I7LcHMwhXfsw9.jpg',
+        education: 'UBA, Ciencias de datos',
+        experience: '2 años de experiencia',
+        salary: 120000,
+        seniority: 'senior',
       },
     ],
   },
@@ -76,31 +97,34 @@ const updateColumns = (
   source: DraggableLocation,
   destination: DraggableLocation
 ) => {
-  const current = { ...columns[source.droppableId as any] };
-  const next = { ...columns[destination.droppableId as any] };
-  const target = current.candidates[source.index];
+  let current = [...columns[source.droppableId as any]!.candidates];
+  const next = [...columns[destination.droppableId as any]!.candidates];
+  const candidate = current[source.index]!;
 
-  // moving to same column
   if (source.droppableId === destination.droppableId) {
-    const reordered = reorder(current, source.index, destination.index);
-    return {
-      ...columns,
-      [source.droppableId]: reordered,
-    };
+    // moving to same column
+
+    current = reorder([...current], source.index, destination.index);
+  } else {
+    // moving to different list
+
+    // remove from original
+    current.splice(source.index, 1);
+    // insert into next
+    next.splice(destination.index, 0, candidate);
   }
 
-  // moving to different list
-
-  // remove from original
-  current.splice(source.index, 1);
-  // insert into next
-  next.splice(destination.index, 0, target);
-
-  return {
+  return Object.values({
     ...columns,
-    [source.droppableId]: current,
-    [destination.droppableId]: next,
-  };
+    [destination.droppableId]: {
+      ...columns[destination.droppableId as any]!,
+      candidates: next,
+    },
+    [source.droppableId]: {
+      ...columns[source.droppableId as any]!,
+      candidates: current,
+    },
+  });
 };
 
 const BoardComponent = () => {
@@ -131,7 +155,7 @@ const BoardComponent = () => {
       return;
     }
 
-    const updatedColumns = updateColumns(columns, source, destination);
+    const updatedColumns: any = updateColumns(columns, source, destination);
 
     setColumns(updatedColumns);
   };
@@ -143,7 +167,7 @@ const BoardComponent = () => {
           columns.map((column, index) => (
             <Droppable
               key={`candidate-column-${index}`}
-              droppableId="job-board"
+              droppableId={`${index}`}
             >
               {(provided) => (
                 <BoardColumn draggableProvided={provided} column={column} />
