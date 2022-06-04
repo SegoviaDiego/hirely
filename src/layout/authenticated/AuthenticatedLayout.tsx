@@ -48,14 +48,14 @@ const AuthenticatedLayout = ({ children }: AuthenticatedLayoutProps) => {
   const router = useRouter();
 
   return (
-    <div>
+    <div className="h-full w-full">
       <Sidebar
         navigation={navigation}
         currentNav={router.asPath}
         setSidebarOpen={setSidebarOpen}
         sidebarOpen={sidebarOpen}
       />
-      <div className="flex flex-1 flex-col md:pl-64">
+      <div className="flex h-full w-full flex-1 flex-col md:pl-64">
         <SearchBar
           setSidebarOpen={setSidebarOpen}
           userNavigation={userNavigation}
