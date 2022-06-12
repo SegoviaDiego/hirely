@@ -48,6 +48,8 @@ const Positions = () => {
   // @TODO: Redirect to sign-in or base path for authenticated users.
   const [jobPostingOpen, setJobPostingOpen] = useState(false);
 
+  const [jobPostings] = useState(positions);
+
   return (
     <Main meta={<Meta title="Hirely" description="Your hiring buddy." />}>
       <CreateJobPostingModal
@@ -131,7 +133,7 @@ const Positions = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200 bg-white">
-                    {positions.map((position) => (
+                    {jobPostings.map((position) => (
                       <tr key={position.id}>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                           <div className="text-gray-900">#{position.id}</div>
@@ -186,7 +188,7 @@ const Positions = () => {
                             <TrashIcon className="w-7" />
                           </a>
                           <a
-                            href="#"
+                            href={`/positions/${position.id}`}
                             className="text-indigo-600 hover:text-indigo-900"
                           >
                             <SearchIcon className="w-7" />
