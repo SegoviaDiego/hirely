@@ -1,10 +1,12 @@
+import { useState } from 'react';
+
+import Link from 'next/link';
+import ReactSelect from 'react-select';
+import makeAnimated from 'react-select/animated';
+
 import { customStyles, technologiesOptions } from '@/constants/react-select';
 import { Meta } from '@/layout/Meta';
 import { Main } from '@/templates/Main';
-import Link from 'next/link';
-import { useState } from 'react';
-import ReactSelect from 'react-select';
-import makeAnimated from 'react-select/animated';
 
 const animatedComponents = makeAnimated();
 
@@ -18,7 +20,7 @@ const dev = {
   maxWage: '2.500',
 };
 
-const Position = () => {
+const Index = () => {
   // @TODO: Redirect to sign-in or base path for authenticated users.
   const [paymentMethod, setPaymentMethod] = useState(2);
 
@@ -26,7 +28,7 @@ const Position = () => {
     <Main meta={<Meta title="Hirely" description="Your hiring buddy." />}>
       <div className="px-4">
         <h1 className="text-4xl font-bold">Frontend Dev</h1>
-        <div className="grid grid-cols-12 w-full gap-6">
+        <div className="grid w-full grid-cols-12 gap-6">
           <div className="col-span-6">
             <label
               htmlFor="first-name"
@@ -117,7 +119,7 @@ const Position = () => {
           <div className="col-span-6">
             <label
               htmlFor="tecnologies"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="mb-1 block text-sm font-medium text-gray-700"
             >
               Tecnologias
             </label>
@@ -310,11 +312,12 @@ const Position = () => {
               <option>2 Meses</option>
               <option>3 Meses</option>
             </select>
-            <div className="flex justify-end mt-6">
-              <Link href="/positions">
+            <div className="mt-6 flex justify-end">
+              {/* TO DO: This should navigate using the jobPosting id. */}
+              <Link href="/positions/1/board">
                 <a
                   type="button"
-                  className="mt-3 inline-flex w-56 justify-center rounded-3xl border bg-indigo-600 px-4 py-4 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:text-sm"
+                  className="mt-3 inline-flex w-56 justify-center rounded-3xl border bg-indigo-600 p-4 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:text-sm"
                 >
                   Ver candidatxs
                 </a>
@@ -327,4 +330,4 @@ const Position = () => {
   );
 };
 
-export default Position;
+export default Index;
