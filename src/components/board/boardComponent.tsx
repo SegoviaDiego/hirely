@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import {
   DragDropContext,
@@ -10,6 +10,8 @@ import {
 import BoardColumn, { BoardColumnData } from '@/components/board/boardColumn';
 import reorder from '@/utils/ReorderArray';
 
+import { Candidate } from './boardCard';
+
 // TODO: Should come from backend.
 const mockColumns: BoardColumnData[] = [
   {
@@ -19,7 +21,39 @@ const mockColumns: BoardColumnData[] = [
       {
         id: 1,
         fullName: 'Bruce Wayne',
+        gitHubUser: '@BruceWayne',
+        currentPosition: 'Semi Sr. Frontend dev',
+        currentCompany: 'Mercado Libre',
+        matchDescription: 'Baja Paga',
+        matchType: 3,
+        gitHubURL: '',
         match: 63,
+        matchRating: {
+          experience: {
+            color: 3,
+            rating: 55,
+          },
+          turnover: {
+            color: 3,
+            rating: 55,
+          },
+          technologies: {
+            color: 3,
+            rating: 55,
+          },
+          salary: {
+            color: 3,
+            rating: 55,
+          },
+          requirements: {
+            color: 3,
+            rating: 55,
+          },
+          benefits: {
+            color: 3,
+            rating: 55,
+          },
+        },
         role: 'Frontend Developer',
         profileImageURL:
           'https://www.themoviedb.org/t/p/w300_and_h450_bestv2/fBEucxECxGLKVHBznO0qHtCGiMO.jpg',
@@ -31,7 +65,39 @@ const mockColumns: BoardColumnData[] = [
       {
         id: 2,
         fullName: 'Bruce Wayne',
+        gitHubUser: '@BruceWayne',
+        currentPosition: 'Semi Sr. Frontend dev',
+        currentCompany: 'Mercado Libre',
+        matchDescription: 'Baja Paga',
+        matchType: 3,
+        gitHubURL: '',
         match: 63,
+        matchRating: {
+          experience: {
+            color: 3,
+            rating: 55,
+          },
+          turnover: {
+            color: 3,
+            rating: 55,
+          },
+          technologies: {
+            color: 3,
+            rating: 55,
+          },
+          salary: {
+            color: 3,
+            rating: 55,
+          },
+          requirements: {
+            color: 3,
+            rating: 55,
+          },
+          benefits: {
+            color: 3,
+            rating: 55,
+          },
+        },
         role: 'Frontend Developer',
         profileImageURL:
           'https://www.themoviedb.org/t/p/w300_and_h450_bestv2/kq5DDnqqofoRI0t6ddtRlsJnNPT.jpg',
@@ -43,7 +109,39 @@ const mockColumns: BoardColumnData[] = [
       {
         id: 3,
         fullName: 'Bruce Wayne',
+        gitHubUser: '@BruceWayne',
+        currentPosition: 'Semi Sr. Frontend dev',
+        currentCompany: 'Mercado Libre',
+        matchDescription: 'Baja Paga',
+        matchType: 3,
+        gitHubURL: '',
         match: 63,
+        matchRating: {
+          experience: {
+            color: 3,
+            rating: 55,
+          },
+          turnover: {
+            color: 3,
+            rating: 55,
+          },
+          technologies: {
+            color: 3,
+            rating: 55,
+          },
+          salary: {
+            color: 3,
+            rating: 55,
+          },
+          requirements: {
+            color: 3,
+            rating: 55,
+          },
+          benefits: {
+            color: 3,
+            rating: 55,
+          },
+        },
         role: 'Frontend Developer',
         profileImageURL:
           'https://www.themoviedb.org/t/p/w300_and_h450_bestv2/2RVyvc8YVqtfN0taqpYliaUoBem.jpg',
@@ -61,7 +159,39 @@ const mockColumns: BoardColumnData[] = [
       {
         id: 4,
         fullName: 'Bruce Wayne',
+        gitHubUser: '@BruceWayne',
+        currentPosition: 'Semi Sr. Frontend dev',
+        currentCompany: 'Mercado Libre',
+        matchDescription: 'Baja Paga',
+        matchType: 3,
+        gitHubURL: '',
         match: 63,
+        matchRating: {
+          experience: {
+            color: 2,
+            rating: 65,
+          },
+          turnover: {
+            color: 3,
+            rating: 27,
+          },
+          technologies: {
+            color: 1,
+            rating: 85,
+          },
+          salary: {
+            color: 3,
+            rating: 21,
+          },
+          requirements: {
+            color: 2,
+            rating: 58,
+          },
+          benefits: {
+            color: 1,
+            rating: 87,
+          },
+        },
         role: 'Frontend Developer',
         profileImageURL:
           'https://www.themoviedb.org/t/p/w300_and_h450_bestv2/ukmfsl59Isvn9odgzMWBidA3cmt.jpg',
@@ -79,7 +209,39 @@ const mockColumns: BoardColumnData[] = [
       {
         id: 5,
         fullName: 'Bruce Wayne',
+        gitHubUser: '@BruceWayne',
+        currentPosition: 'Semi Sr. Frontend dev',
+        currentCompany: 'Mercado Libre',
+        matchDescription: 'Baja Paga',
+        matchType: 3,
+        gitHubURL: '',
         match: 63,
+        matchRating: {
+          experience: {
+            color: 3,
+            rating: 55,
+          },
+          turnover: {
+            color: 3,
+            rating: 55,
+          },
+          technologies: {
+            color: 3,
+            rating: 55,
+          },
+          salary: {
+            color: 3,
+            rating: 55,
+          },
+          requirements: {
+            color: 3,
+            rating: 55,
+          },
+          benefits: {
+            color: 3,
+            rating: 55,
+          },
+        },
         role: 'Frontend Developer',
         profileImageURL:
           'https://www.themoviedb.org/t/p/w300_and_h450_bestv2/ntwPvV4GKGGHO3I7LcHMwhXfsw9.jpg',
@@ -127,7 +289,13 @@ const updateColumns = (
   });
 };
 
-const BoardComponent = () => {
+interface IBoardComponentProps {
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  setSelectedProfile: Dispatch<SetStateAction<Candidate>>;
+}
+
+const BoardComponent = (props: IBoardComponentProps) => {
+  const { setOpen, setSelectedProfile } = props;
   // TODO: This should come from the database.
   const [columns, setColumns] = useState(mockColumns);
 
@@ -170,7 +338,12 @@ const BoardComponent = () => {
               droppableId={`${index}`}
             >
               {(provided) => (
-                <BoardColumn draggableProvided={provided} column={column} />
+                <BoardColumn
+                  draggableProvided={provided}
+                  column={column}
+                  setOpen={setOpen}
+                  setSelectedProfile={setSelectedProfile}
+                />
               )}
             </Droppable>
           ))}

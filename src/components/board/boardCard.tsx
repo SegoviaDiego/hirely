@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react';
+
 import {
   BriefcaseIcon,
   CashIcon,
@@ -8,6 +10,8 @@ import { DraggableProvided } from 'react-beautiful-dnd';
 export type BoardCardProps = {
   candidate: Candidate;
   draggableProvided: DraggableProvided;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  setSelectedProfile: Dispatch<SetStateAction<Candidate>>;
 };
 
 export type Candidate = {
@@ -20,9 +24,37 @@ export type Candidate = {
   experience: string;
   salary: number;
   seniority: string;
+  gitHubURL: string;
+  gitHubUser: string;
+  currentPosition: string;
+  currentCompany: string;
+  matchDescription: string;
+  matchType: number;
+  matchRating: {
+    technologies: MatchRating;
+    salary: MatchRating;
+    requirements: MatchRating;
+    turnover: MatchRating;
+    benefits: MatchRating;
+    experience: MatchRating;
+  };
 };
 
-const BoardCard = ({ draggableProvided, candidate }: BoardCardProps) => {
+export type MatchRating = {
+  color: number;
+  rating: number;
+};
+
+const BoardCard = ({
+  draggableProvided,
+  candidate,
+  setOpen,
+  setSelectedProfile,
+}: BoardCardProps) => {
+  const handleCandidateProfile = () => {
+    setOpen(true);
+    setSelectedProfile(candidate);
+  };
   return (
     <div
       ref={draggableProvided?.innerRef}
@@ -33,7 +65,10 @@ const BoardCard = ({ draggableProvided, candidate }: BoardCardProps) => {
       <div className="sm:flex sm:items-center sm:justify-between">
         <div className="sm:flex sm:space-x-5">
           <div className="text-center sm:mt-0 sm:pt-1 sm:text-left">
-            <div className="w-24 rounded-md bg-amber-300 text-center text-sm text-amber-700">
+            <div
+              onClick={() => handleCandidateProfile()}
+              className="w-24 cursor-pointer rounded-md bg-amber-300 text-center text-sm text-amber-700"
+            >
               {candidate?.match}% match
             </div>
             <p className="text-xl font-bold text-gray-900 sm:text-2xl">
