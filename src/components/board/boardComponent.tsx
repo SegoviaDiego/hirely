@@ -27,6 +27,12 @@ const mockColumns: BoardColumnData[] = [
         matchDescription: 'Remuneración económica insuficiente',
         matchType: 3,
         gitHubURL: '',
+        gitHubUser: '@BruceWayne',
+        currentPosition: 'Semi Sr. Frontend dev',
+        currentCompany: 'Mercado Libre',
+        matchDescription: 'Baja Paga',
+        matchType: 3,
+        gitHubURL: '',
         match: 55,
         matchE: 80,
         matchDev: 30,
@@ -56,6 +62,32 @@ const mockColumns: BoardColumnData[] = [
             rating: 50,
           },
         },
+        matchRating: {
+          experience: {
+            color: 3,
+            rating: 55,
+          },
+          turnover: {
+            color: 3,
+            rating: 55,
+          },
+          technologies: {
+            color: 3,
+            rating: 55,
+          },
+          salary: {
+            color: 3,
+            rating: 55,
+          },
+          requirements: {
+            color: 3,
+            rating: 55,
+          },
+          benefits: {
+            color: 3,
+            rating: 55,
+          },
+        },
         role: 'Frontend Developer',
         profileImageURL:
           'https://media-exp1.licdn.com/dms/image/C4E03AQGlhsSaeDOzLw/profile-displayphoto-shrink_200_200/0/1539708874075?e=1661385600&v=beta&t=9y9_VbndeB1otwj7aaBulHXlnjxaNqCQV3Q5gr0bW7k',
@@ -72,6 +104,12 @@ const mockColumns: BoardColumnData[] = [
         currentCompany: 'Freelance',
         matchDescription: 'Experiencia insuficiente',
         matchType: 2,
+        gitHubURL: '',
+        gitHubUser: '@BruceWayne',
+        currentPosition: 'Semi Sr. Frontend dev',
+        currentCompany: 'Mercado Libre',
+        matchDescription: 'Baja Paga',
+        matchType: 3,
         gitHubURL: '',
         match: 63,
         matchE: 61,
@@ -171,6 +209,12 @@ const mockColumns: BoardColumnData[] = [
         matchDescription: 'Cumple con los requerimientos minimos',
         matchType: 1,
         gitHubURL: '',
+        gitHubUser: '@BruceWayne',
+        currentPosition: 'Semi Sr. Frontend dev',
+        currentCompany: 'Mercado Libre',
+        matchDescription: 'Baja Paga',
+        matchType: 3,
+        gitHubURL: '',
         match: 77,
         matchE: 80,
         matchDev: 75,
@@ -200,6 +244,32 @@ const mockColumns: BoardColumnData[] = [
             rating: 70,
           },
         },
+        matchRating: {
+          experience: {
+            color: 2,
+            rating: 65,
+          },
+          turnover: {
+            color: 3,
+            rating: 27,
+          },
+          technologies: {
+            color: 1,
+            rating: 85,
+          },
+          salary: {
+            color: 3,
+            rating: 21,
+          },
+          requirements: {
+            color: 2,
+            rating: 58,
+          },
+          benefits: {
+            color: 1,
+            rating: 87,
+          },
+        },
         role: 'Frontend Developer',
         profileImageURL:
           'https://media-exp1.licdn.com/dms/image/C4E03AQFN7EOqYjsrAA/profile-displayphoto-shrink_200_200/0/1517721717978?e=1661385600&v=beta&t=QesE49ZFFKxXQsrxlPSOS8c_kDGV2Y2UiAZxwn8Gyuk',
@@ -222,6 +292,12 @@ const mockColumns: BoardColumnData[] = [
         currentCompany: 'Santander',
         matchDescription: 'Cumple con los requerimientos minimos',
         matchType: 1,
+        gitHubURL: '',
+        gitHubUser: '@BruceWayne',
+        currentPosition: 'Semi Sr. Frontend dev',
+        currentCompany: 'Mercado Libre',
+        matchDescription: 'Baja Paga',
+        matchType: 3,
         gitHubURL: '',
         match: 85,
         matchE: 80,
@@ -250,6 +326,32 @@ const mockColumns: BoardColumnData[] = [
           benefits: {
             color: 1,
             rating: 70,
+          },
+        },
+        matchRating: {
+          experience: {
+            color: 3,
+            rating: 55,
+          },
+          turnover: {
+            color: 3,
+            rating: 55,
+          },
+          technologies: {
+            color: 3,
+            rating: 55,
+          },
+          salary: {
+            color: 3,
+            rating: 55,
+          },
+          requirements: {
+            color: 3,
+            rating: 55,
+          },
+          benefits: {
+            color: 3,
+            rating: 55,
           },
         },
         role: 'Frontend Developer',
