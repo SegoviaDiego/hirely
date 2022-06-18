@@ -36,6 +36,7 @@ const mockColumns: BoardColumnData[] = [
         match: 55,
         matchE: 80,
         matchDev: 30,
+        matchDev: 75,
         matchRating: {
           experience: {
             color: 1,
@@ -244,6 +245,7 @@ const mockColumns: BoardColumnData[] = [
             rating: 70,
           },
         },
+        matchDev: 75,
         matchRating: {
           experience: {
             color: 2,
@@ -328,6 +330,7 @@ const mockColumns: BoardColumnData[] = [
             rating: 70,
           },
         },
+        matchDev: 75,
         matchRating: {
           experience: {
             color: 3,
