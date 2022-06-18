@@ -83,7 +83,7 @@ model Candidate {
   education          String
   experience         String
   empresaActual      String
-  permanencia        Int
+  permanencia        Decimal
   perfilExterno      String
   empresaActual      String
   vacaciones         Int
