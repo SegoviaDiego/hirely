@@ -54,11 +54,23 @@ model JobPostingTech {
    @@unique([jobPostingId, techId], name: "uniqueJobPostingTech")
 }
 
+model CandidateTech {
+  id                Int      @id @unique @default(autoincrement())
+  candidateId Int
+  techId       Int
+
+  candidate   Candidate @relation(fields: [candidateId], references: [id])
+  tech         Tech       @relation(fields: [techId], references: [id])
+
+   @@unique([candidateId, techId], name: "uniqueCandidateTech")
+}
+
 model Tech {
   id                Int      @id @unique @default(autoincrement())
   title          String           @unique
 
   JobPostingTech JobPostingTech[]
+  CandidateTech CandidateTech[]
 }
 
 model Candidate {
@@ -72,6 +84,7 @@ model Candidate {
   experience         String
 
   appliedJobPostings CandidateJobPosting[]
+  techs              CandidateTech[]
 }
 
 model CandidateJobPosting {
@@ -80,6 +93,8 @@ model CandidateJobPosting {
   jobPostingId      Int
   candidateMatch    Decimal
   organizationMatch Decimal
+  
+  ingles         nivelIngles
 
   candidate    Candidate  @relation(fields: [candidateId], references: [id])
   jobPosting   JobPosting @relation(fields: [jobPostingId], references: [id])
@@ -99,14 +114,21 @@ enum jobPostingType {
 }
 
 enum seniority {
-  SENIOR
-  SEMISENIOR
-  JUNIOR
   TRAINEE
+  JUNIOR
+  SEMISENIOR
+  SENIOR
 }
 
 enum salaryType {
   ARS
   USD
   BOTH
+}
+
+enum nivelIngles {
+  PRINCIPIANTE
+  BASICO
+  INTERMEDIO
+  AVANZADO
 }
