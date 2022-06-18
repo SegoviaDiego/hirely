@@ -82,7 +82,6 @@ model Candidate {
   salary             Decimal
   education          String
   experience         String
-  empresaActual      String
   permanencia        Decimal
   perfilExterno      String
   empresaActual      String
