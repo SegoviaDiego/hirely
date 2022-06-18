@@ -159,8 +159,13 @@ export const ProfileDrawerComponent = (props: IProfileProps) => {
                       <div className="pt-10">
                         <dl className="space-y-8 px-4 sm:space-y-6 sm:px-6">
                           <div>
-                            <dt className="text-xl font-bold text-gray-900 sm:text-2xl">
-                              {`Match: ${selectedProfile.match}%`}
+                            <dt className="grid grid-cols-2 text-lg font-bold text-gray-900">
+                              <div className="col-span-1">
+                                {`Empresa: ${selectedProfile?.match}% match`}
+                              </div>
+                              <div className="col-span-1">
+                                {`Candidato: ${selectedProfile?.matchDev}% match`}
+                              </div>
                             </dt>
                             <dd className="mt-4 grid grid-cols-2 gap-4">
                               <div className="col-span-1">
@@ -191,7 +196,7 @@ export const ProfileDrawerComponent = (props: IProfileProps) => {
                               <div className="col-span-1">
                                 <div className="mb-1 flex justify-between">
                                   <p className="text-base font-medium">
-                                    Experiencia
+                                    Flexibilidad laboral
                                   </p>
                                   <p className="text-sm font-medium">
                                     {
@@ -215,16 +220,16 @@ export const ProfileDrawerComponent = (props: IProfileProps) => {
                               </div>
                               <div className="col-span-1">
                                 <div className="mb-1 flex justify-between">
-                                  <span className="text-base font-medium">
-                                    Requerimientos
-                                  </span>
-                                  <span className="text-sm font-medium">
+                                  <p className="text-base font-medium">
+                                    Experiencia
+                                  </p>
+                                  <p className="text-sm font-medium">
                                     {
-                                      selectedProfile?.matchRating?.requirements
+                                      selectedProfile?.matchRating?.experience
                                         ?.rating
                                     }
                                     %
-                                  </span>
+                                  </p>
                                 </div>
                                 <div className="h-2.5 w-full rounded-full bg-gray-200">
                                   <div

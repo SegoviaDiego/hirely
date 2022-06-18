@@ -28,6 +28,7 @@ const mockColumns: BoardColumnData[] = [
         matchType: 3,
         gitHubURL: '',
         match: 63,
+        matchDev: 75,
         matchRating: {
           experience: {
             color: 3,
@@ -72,6 +73,7 @@ const mockColumns: BoardColumnData[] = [
         matchType: 3,
         gitHubURL: '',
         match: 63,
+        matchDev: 75,
         matchRating: {
           experience: {
             color: 3,
@@ -116,6 +118,7 @@ const mockColumns: BoardColumnData[] = [
         matchType: 3,
         gitHubURL: '',
         match: 63,
+        matchDev: 75,
         matchRating: {
           experience: {
             color: 3,
@@ -166,6 +169,7 @@ const mockColumns: BoardColumnData[] = [
         matchType: 3,
         gitHubURL: '',
         match: 63,
+        matchDev: 75,
         matchRating: {
           experience: {
             color: 2,
@@ -216,6 +220,7 @@ const mockColumns: BoardColumnData[] = [
         matchType: 3,
         gitHubURL: '',
         match: 63,
+        matchDev: 75,
         matchRating: {
           experience: {
             color: 3,

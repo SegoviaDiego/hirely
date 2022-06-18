@@ -18,6 +18,7 @@ export type Candidate = {
   id: number;
   fullName: string;
   match: number;
+  matchDev: number;
   role: string;
   profileImageURL: string;
   education: string;
