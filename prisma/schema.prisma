@@ -100,6 +100,8 @@ model CandidateJobPosting {
   jobPostingId      Int
   candidateMatch    Decimal
   organizationMatch Decimal
+  
+  ingles         nivelIngles
 
   candidate    Candidate  @relation(fields: [candidateId], references: [id])
   jobPosting   JobPosting @relation(fields: [jobPostingId], references: [id])
