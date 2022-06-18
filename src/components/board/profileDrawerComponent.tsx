@@ -271,7 +271,7 @@ export const ProfileDrawerComponent = (props: IProfileProps) => {
                               <div className="col-span-1">
                                 <div className="mb-1 flex justify-between">
                                   <span className="text-base font-medium">
-                                    Turnover
+                                    Permanencia
                                   </span>
                                   <span className="text-sm font-medium">
                                     {
