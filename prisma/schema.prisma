@@ -82,6 +82,14 @@ model Candidate {
   salary             Decimal
   education          String
   experience         String
+  empresaActual      String
+  permanencia        Int
+  perfilExterno      String
+  empresaActual      String
+  vacaciones         Int
+  
+  ingles             nivelIngles
+  modalidad          jobPostingType
 
   appliedJobPostings CandidateJobPosting[]
   techs              CandidateTech[]
@@ -93,8 +101,6 @@ model CandidateJobPosting {
   jobPostingId      Int
   candidateMatch    Decimal
   organizationMatch Decimal
-  
-  ingles         nivelIngles
 
   candidate    Candidate  @relation(fields: [candidateId], references: [id])
   jobPosting   JobPosting @relation(fields: [jobPostingId], references: [id])
