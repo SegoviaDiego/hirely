@@ -23,7 +23,7 @@ model User {
 }
 
 model JobPosting {
-  id           String                @id @unique @default(cuid())
+  id                Int      @id @unique @default(autoincrement())
   title        String
   description  String?
   requirements String?
@@ -44,9 +44,9 @@ model JobPosting {
 }
 
 model JobPostingTech {
-  id           String     @id @unique @default(cuid())
-  jobPostingId String
-  techId       String
+  id                Int      @id @unique @default(autoincrement())
+  jobPostingId Int
+  techId       Int
 
   jobPosting   JobPosting @relation(fields: [jobPostingId], references: [id])
   tech         Tech       @relation(fields: [techId], references: [id])
@@ -55,14 +55,14 @@ model JobPostingTech {
 }
 
 model Tech {
-  id             String           @id @unique @default(cuid())
+  id                Int      @id @unique @default(autoincrement())
   title          String           @unique
 
   JobPostingTech JobPostingTech[]
 }
 
 model Candidate {
-  id                 String                @id @unique @default(cuid())
+  id                Int      @id @unique @default(autoincrement())
   fullName           String
   email              String                @unique
   profilePictureURL  String
@@ -75,9 +75,9 @@ model Candidate {
 }
 
 model CandidateJobPosting {
-  id                String     @id @unique @default(cuid())
-  candidateId       String
-  jobPostingId      String
+  id                Int      @id @unique @default(autoincrement())
+  candidateId       Int
+  jobPostingId      Int
   candidateMatch    Decimal
   organizationMatch Decimal
 
