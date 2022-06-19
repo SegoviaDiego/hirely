@@ -161,10 +161,10 @@ export const ProfileDrawerComponent = (props: IProfileProps) => {
                           <div>
                             <dt className="grid grid-cols-2 text-lg font-bold text-gray-900">
                               <div className="col-span-1">
-                                {`Empresa: ${selectedProfile?.match}% match`}
+                                {`Empresa: ${selectedProfile?.matchE}%`}
                               </div>
                               <div className="col-span-1">
-                                {`Candidato: ${selectedProfile?.matchDev}% match`}
+                                {`Candidato: ${selectedProfile?.matchDev}%`}
                               </div>
                             </dt>
                             <dd className="mt-4 grid grid-cols-2 gap-4">
@@ -200,7 +200,7 @@ export const ProfileDrawerComponent = (props: IProfileProps) => {
                                   </p>
                                   <p className="text-sm font-medium">
                                     {
-                                      selectedProfile?.matchRating?.experience
+                                      selectedProfile?.matchRating?.requirements
                                         ?.rating
                                     }
                                     %
@@ -209,11 +209,11 @@ export const ProfileDrawerComponent = (props: IProfileProps) => {
                                 <div className="h-2.5 w-full rounded-full bg-gray-200">
                                   <div
                                     className={`h-2.5 rounded-full ${getBgColor(
-                                      selectedProfile?.matchRating?.experience
+                                      selectedProfile?.matchRating?.requirements
                                         ?.color
                                     )}`}
                                     style={{
-                                      width: `${selectedProfile?.matchRating?.experience?.rating}%`,
+                                      width: `${selectedProfile?.matchRating?.requirements?.rating}%`,
                                     }}
                                   ></div>
                                 </div>
@@ -234,11 +234,11 @@ export const ProfileDrawerComponent = (props: IProfileProps) => {
                                 <div className="h-2.5 w-full rounded-full bg-gray-200">
                                   <div
                                     className={`h-2.5 rounded-full ${getBgColor(
-                                      selectedProfile?.matchRating?.requirements
+                                      selectedProfile?.matchRating?.experience
                                         ?.color
                                     )}`}
                                     style={{
-                                      width: `${selectedProfile?.matchRating?.requirements?.rating}%`,
+                                      width: `${selectedProfile?.matchRating?.experience?.rating}%`,
                                     }}
                                   ></div>
                                 </div>
@@ -275,7 +275,7 @@ export const ProfileDrawerComponent = (props: IProfileProps) => {
                                   </span>
                                   <span className="text-sm font-medium">
                                     {
-                                      selectedProfile?.matchRating?.turnover
+                                      selectedProfile?.matchRating?.permanencia
                                         ?.rating
                                     }
                                     %
@@ -284,11 +284,11 @@ export const ProfileDrawerComponent = (props: IProfileProps) => {
                                 <div className="h-2.5 w-full rounded-full bg-gray-200">
                                   <div
                                     className={`h-2.5 rounded-full ${getBgColor(
-                                      selectedProfile?.matchRating?.turnover
+                                      selectedProfile?.matchRating?.permanencia
                                         ?.color
                                     )}`}
                                     style={{
-                                      width: `${selectedProfile?.matchRating?.turnover?.rating}%`,
+                                      width: `${selectedProfile?.matchRating?.permanencia?.rating}%`,
                                     }}
                                   ></div>
                                 </div>

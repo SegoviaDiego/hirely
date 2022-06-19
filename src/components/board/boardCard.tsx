@@ -18,6 +18,7 @@ export type Candidate = {
   id: number;
   fullName: string;
   match: number;
+  matchE: number;
   matchDev: number;
   role: string;
   profileImageURL: string;
@@ -35,7 +36,7 @@ export type Candidate = {
     technologies: MatchRating;
     salary: MatchRating;
     requirements: MatchRating;
-    turnover: MatchRating;
+    permanencia: MatchRating;
     benefits: MatchRating;
     experience: MatchRating;
   };
@@ -90,16 +91,16 @@ const BoardCard = ({
       </div>
       <div className="flex w-full flex-col">
         <div className="flex flex-1 flex-row items-center py-1">
+          <AcademicCapIcon className="h-5 w-5" aria-hidden="true" />
+          <p className="ml-2">{candidate?.experience}</p>
+        </div>
+        <div className="flex flex-1 flex-row items-center py-1">
           <BriefcaseIcon className="h-5 w-5" aria-hidden="true" />
-          <p className="ml-2">${candidate?.salary} salario anual</p>
+          <p className="ml-2">{candidate?.seniority}</p>
         </div>
         <div className="flex flex-1 flex-row items-center py-1">
           <CashIcon className="h-5 w-5" aria-hidden="true" />
           <p className="ml-2">{candidate?.education}</p>
-        </div>
-        <div className="flex flex-1 flex-row items-center py-1">
-          <AcademicCapIcon className="h-5 w-5" aria-hidden="true" />
-          <p className="ml-2">{candidate?.experience}</p>
         </div>
       </div>
     </div>

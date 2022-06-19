@@ -8,6 +8,8 @@ export const technologiesOptions = [
   { label: 'ReactNative', value: 4 },
   { label: 'Java', value: 5 },
   { label: 'Rust', value: 6 },
+  { label: 'PostgreSQL', value: 7 },
+  { label: 'Prisma', value: 8 },
 ];
 
 export const customStyles: StylesConfig = {

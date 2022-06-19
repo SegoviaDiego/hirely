@@ -11,23 +11,26 @@ import { Main } from '@/templates/Main';
 const animatedComponents = makeAnimated();
 
 const dev = {
-  company: 'Mercado Libre',
-  title: 'Frontend Dev',
-  description: 'Frontend dev con conocimientos de React y NextJs',
-  benefits: 'Gym pago y obra social de primera linea',
-  requirements: 'Conocimiento de React y de SSR utilizando NextJs',
-  minWage: '1.500',
-  maxWage: '2.500',
+  company: 'Santander',
+  title: 'Frontend Developer',
+  description:
+    'Frontend developer con conocimientos de React, NextJs, PostgreSQL y Prisma',
+  benefits:
+    'Gimnasio, obra social de primera linea, refrigerios, becas por estudio',
+  requirements:
+    'Conocimientos de React, SSR utilizando NextJs, PostgreSQL y Prisma',
+  minWage: '200000',
+  maxWage: '320000',
 };
 
 const Index = () => {
   // @TODO: Redirect to sign-in or base path for authenticated users.
-  const [paymentMethod, setPaymentMethod] = useState(2);
+  const [paymentMethod, setPaymentMethod] = useState(1);
 
   return (
     <Main meta={<Meta title="Hirely" description="Your hiring buddy." />}>
       <div className="px-4">
-        <h1 className="text-4xl font-bold">Frontend Dev</h1>
+        <h1 className="text-4xl font-bold">Frontend Developer</h1>
         <div className="grid w-full grid-cols-12 gap-6">
           <div className="col-span-6">
             <label
@@ -103,7 +106,7 @@ const Index = () => {
               htmlFor="modality"
               className="block text-sm font-medium text-gray-700"
             >
-              Antiguedad
+              Seniority
             </label>
             <select
               id="modality"
@@ -111,8 +114,9 @@ const Index = () => {
               autoComplete="modality-name"
               className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
             >
-              <option>Junior</option>
               <option>Semi Senior</option>
+              <option>Trainee</option>
+              <option>Junior</option>
               <option>Senior</option>
             </select>
           </div>
@@ -128,7 +132,12 @@ const Index = () => {
                 closeMenuOnSelect={false}
                 components={animatedComponents}
                 isMulti
-                defaultValue={[technologiesOptions[0], technologiesOptions[1]]}
+                defaultValue={[
+                  technologiesOptions[0],
+                  technologiesOptions[1],
+                  technologiesOptions[7],
+                  technologiesOptions[8],
+                ]}
                 options={technologiesOptions}
                 styles={customStyles}
               />
@@ -230,6 +239,7 @@ const Index = () => {
                       <span className="text-gray-500 sm:text-sm">$</span>
                     </div>
                     <input
+                      value={dev.minWage}
                       type="text"
                       name="price"
                       id="price"
@@ -245,6 +255,7 @@ const Index = () => {
                         <span className="text-gray-500 sm:text-sm">$</span>
                       </div>
                       <input
+                        value={dev.maxWage}
                         type="text"
                         name="price"
                         id="price"
@@ -264,7 +275,6 @@ const Index = () => {
                       <span className="text-gray-500 sm:text-sm">U$D</span>
                     </div>
                     <input
-                      value={dev.minWage}
                       type="text"
                       name="price"
                       id="price"
@@ -280,7 +290,6 @@ const Index = () => {
                         <span className="text-gray-500 sm:text-sm">U$D</span>
                       </div>
                       <input
-                        value={dev.maxWage}
                         type="text"
                         name="price"
                         id="price"
@@ -306,10 +315,10 @@ const Index = () => {
               autoComplete="modality-name"
               className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
             >
+              <option>2 Meses</option>
               <option>1 Semana</option>
               <option>2 Semanas</option>
               <option>1 Mes</option>
-              <option>2 Meses</option>
               <option>3 Meses</option>
             </select>
             <div className="mt-6 flex justify-end">
