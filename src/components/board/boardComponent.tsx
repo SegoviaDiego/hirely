@@ -185,11 +185,11 @@ const mockColumns: BoardColumnData[] = [
           },
           technologies: {
             color: 1,
-            rating: 85,
+            rating: 70,
           },
           salary: {
             color: 1,
-            rating: 80,
+            rating: 77,
           },
           requirements: {
             color: 1,
