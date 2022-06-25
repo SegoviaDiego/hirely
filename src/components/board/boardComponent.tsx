@@ -58,7 +58,7 @@ const mockColumns: BoardColumnData[] = [
         },
         role: 'Frontend Developer',
         profileImageURL:
-          'https://media-exp1.licdn.com/dms/image/C4D03AQFCQE9-7sD-Yw/profile-displayphoto-shrink_200_200/0/1653497121100?e=1661385600&v=beta&t=W1K5NJwRVD3mYQtkoNVzwfijbSnzEEnMKPeugNmPi_s',
+          'https://media-exp1.licdn.com/dms/image/C4E03AQGlhsSaeDOzLw/profile-displayphoto-shrink_200_200/0/1539708874075?e=1661385600&v=beta&t=9y9_VbndeB1otwj7aaBulHXlnjxaNqCQV3Q5gr0bW7k',
         education: 'Secundario',
         experience: '11 años de experiencia',
         salary: 360000,
