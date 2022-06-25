@@ -1,13 +1,13 @@
 import { Dispatch, Fragment, SetStateAction, useRef, useState } from 'react';
 
 import { Dialog, Transition } from '@headlessui/react';
+import Link from 'next/link';
 
+import FirstStep from './FirstStep';
 import FourthStep from './FourthStep';
 import SecondStep from './SecondStep';
 import SuccessStep from './SuccessStep';
 import ThirdStep from './ThirdStep';
-import FirstStep from './FirstStep';
-import Link from 'next/link';
 
 interface CreateJobPostingModalProps {
   isOpen: boolean;
@@ -72,7 +72,7 @@ export default function CreateJobPostingModal(
                   />
                 )}
                 {currentStep === 5 && <SuccessStep />}
-                <div className="mt-6 bg-gray-50 px-4 py-3 sm:flex sm:px-6 rounded-b-lg">
+                <div className="mt-6 rounded-b-lg bg-gray-50 px-4 py-3 sm:flex sm:px-6">
                   {currentStep !== 5 ? (
                     <>
                       {currentStep === 1 ? (
