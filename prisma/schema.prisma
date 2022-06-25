@@ -81,11 +81,15 @@ model Candidate {
   seniority          seniority
   salary             Decimal
   education          String
-  experience         String
+  experience         Int
   permanencia        Decimal
   perfilExterno      String
   empresaActual      String
   vacaciones         Int
+	fecha_nac					 DateTime
+	edad							 Int
+	sexo							 sexo
+  posicionActual     String
 
   ingles             nivelIngles
   modalidad          jobPostingType
@@ -136,4 +140,10 @@ enum nivelIngles {
   BASICO
   INTERMEDIO
   AVANZADO
+}
+
+enum sexo {
+  MASCULINO
+  FEMENINO
+  OTRO
 }
