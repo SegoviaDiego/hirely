@@ -33,7 +33,7 @@ model JobPosting {
   arsMinSalary Decimal
   arsMaxSalary Decimal
   authorId     Int
-
+  vacaciones   Int
   seniority    seniority
   salaryType   salaryType
   type         jobPostingType
