@@ -1,4 +1,5 @@
 import { prisma } from '@/core/db';
+import { UserRole } from '@prisma/client';
 
 const bcrypt = require('bcrypt');
 
@@ -16,7 +17,7 @@ const handler = async (req: any, res: any) => {
           fullName,
           email,
           password: hash,
-          role: role || 'USER',
+          role: UserRole.USER
         },
       });
 
