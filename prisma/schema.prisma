@@ -104,11 +104,21 @@ model CandidateJobPosting {
   jobPostingId      Int
   candidateMatch    Decimal
   organizationMatch Decimal
+  timeline          Timeline @relation(fields: [timelineId], references: [id])
 
   candidate    Candidate  @relation(fields: [candidateId], references: [id])
   jobPosting   JobPosting @relation(fields: [jobPostingId], references: [id])
 
+  timelineId Int
   @@unique([jobPostingId, candidateId], name: "uniqueJobPostingCandidate")
+}
+
+model Timeline {
+  id                  Int                   @id @unique @default(autoincrement())
+  title               String
+  description         String
+  endDate             DateTime?
+  CandidateJobPosting CandidateJobPosting[]
 }
 
 enum UserRole {
