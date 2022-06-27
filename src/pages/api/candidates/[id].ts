@@ -1,30 +1,34 @@
 import { prisma } from '@/core/db';
 
-const getMethod = async (req: any, res: any) => {
-  const { id } = req.query;
-
-  try {
-    const candidate = await prisma.candidate.findUnique({
-      where: {
-        id: Number.parseInt(id, 10),
-      },
-    });
-
-    return res.status(200).json(candidate);
-  } catch (err: any) {
-    return res.status(503).json({ err: err.toString() });
-  }
-};
-
 const handler = async (req: any, res: any) => {
-  switch (req.method) {
-    case 'GET':
-      return getMethod(req, res);
-    default:
-      return res
+    if (req.method === 'GET') {
+        const { id } = req.query;
+
+        if (!id) return res.status(400).end("Invalid request, please send valid id");
+
+        const candidate = await prisma.candidate.findFirst({
+            where: { id: parseInt(id) },
+            include: {
+                techs: {
+                    include: {
+                        tech: true
+                    }
+                },
+                appliedJobPostings: {
+                    include: {
+                        jobPosting: true,
+                        timeline: true
+                    }
+                }
+            }
+        });
+
+        return res.status(200).send(candidate);
+    }
+
+    return res
         .status(405)
-        .json({ error: 'This request only supports GET requests' });
-  }
+        .json({ error: 'This request only supports GET and DELETE requests' });
 };
 
 export default handler;
