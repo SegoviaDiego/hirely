@@ -9,9 +9,18 @@ const getMethod = async (req: any, res: any) => {
         id: Number.parseInt(id, 10),
       },
       include: {
-        techs: true,
-        author: true,
-        candidates: true,
+          techs: {
+              include: {
+                  tech: true
+              }
+          },
+          candidates: {
+              include: {
+                  candidate: true,
+                  timeline: true
+              }
+          },
+          timelines: true
       },
     });
 

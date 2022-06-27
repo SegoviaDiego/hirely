@@ -7,23 +7,23 @@ datasource db {
 }
 
 generator client {
-  provider        = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 model User {
-  id                Int      @id @unique @default(autoincrement())
-  email             String   @unique
+  id                Int       @id @unique @default(autoincrement())
+  email             String    @unique
   password          String
   fullName          String
   emailVerified     DateTime?
   profilePictureURL String?
 
-  role              UserRole
-  jobPostings       JobPosting[]
+  role        UserRole
+  jobPostings JobPosting[]
 }
 
 model JobPosting {
-  id                Int      @id @unique @default(autoincrement())
+  id           Int            @id @unique @default(autoincrement())
   title        String
   description  String?
   requirements String?
@@ -38,76 +38,77 @@ model JobPosting {
   salaryType   salaryType
   type         jobPostingType
 
-  candidates   CandidateJobPosting[]
-  techs        JobPostingTech[]
-  author       User                  @relation(fields: [authorId], references: [id])
+  candidates CandidateJobPosting[]
+  techs      JobPostingTech[]
+  timelines  Timeline[]
+  author     User                  @relation(fields: [authorId], references: [id])
 }
 
 model JobPostingTech {
-  id                Int      @id @unique @default(autoincrement())
+  id           Int @id @unique @default(autoincrement())
   jobPostingId Int
   techId       Int
 
-  jobPosting   JobPosting @relation(fields: [jobPostingId], references: [id])
-  tech         Tech       @relation(fields: [techId], references: [id])
+  jobPosting JobPosting @relation(fields: [jobPostingId], references: [id])
+  tech       Tech       @relation(fields: [techId], references: [id])
 
-   @@unique([jobPostingId, techId], name: "uniqueJobPostingTech")
+  @@unique([jobPostingId, techId], name: "uniqueJobPostingTech")
 }
 
 model CandidateTech {
-  id                Int      @id @unique @default(autoincrement())
+  id          Int @id @unique @default(autoincrement())
   candidateId Int
-  techId       Int
+  techId      Int
 
-  candidate   Candidate @relation(fields: [candidateId], references: [id])
-  tech         Tech       @relation(fields: [techId], references: [id])
+  candidate Candidate @relation(fields: [candidateId], references: [id])
+  tech      Tech      @relation(fields: [techId], references: [id])
 
-   @@unique([candidateId, techId], name: "uniqueCandidateTech")
+  @@unique([candidateId, techId], name: "uniqueCandidateTech")
 }
 
 model Tech {
-  id                Int      @id @unique @default(autoincrement())
-  title          String           @unique
+  id    Int    @id @unique @default(autoincrement())
+  title String @unique
 
   JobPostingTech JobPostingTech[]
-  CandidateTech CandidateTech[]
+  CandidateTech  CandidateTech[]
 }
 
 model Candidate {
-  id                Int      @id @unique @default(autoincrement())
-  fullName           String
-  email              String                @unique
-  profilePictureURL  String
-  seniority          seniority
-  salary             Decimal
-  education          String
-  experience         Int
-  permanencia        Decimal
-  perfilExterno      String
-  empresaActual      String
-  vacaciones         Int
-	fecha_nac					 DateTime
-	edad							 Int
-	sexo							 sexo
-  posicionActual     String
+  id                Int       @id @unique @default(autoincrement())
+  fullName          String
+  email             String    @unique
+  profilePictureURL String
+  seniority         seniority
+  salary            Decimal
+  education         String
+  experience        Int
+  permanencia       Decimal
+  perfilExterno     String
+  empresaActual     String
+  vacaciones        Int
+  fecha_nac         DateTime
+  edad              Int
+  sexo              sexo
+  posicionActual    String
 
-  ingles             nivelIngles
-  modalidad          jobPostingType
+  ingles    nivelIngles
+  modalidad jobPostingType
 
   appliedJobPostings CandidateJobPosting[]
   techs              CandidateTech[]
+  Timeline           Timeline[]
 }
 
 model CandidateJobPosting {
-  id                Int      @id @unique @default(autoincrement())
-  candidateId       Int
-  jobPostingId      Int
-  candidateMatch    Decimal
-  organizationMatch Decimal
-  timeline          Timeline @relation(fields: [timelineId], references: [id])
+  id             Int      @id @unique @default(autoincrement())
+  candidateId    Int
+  jobPostingId   Int
+  instanceKanban Int
+  timeline       Timeline @relation(fields: [timelineId], references: [id])
 
-  candidate    Candidate  @relation(fields: [candidateId], references: [id])
-  jobPosting   JobPosting @relation(fields: [jobPostingId], references: [id])
+  candidate  Candidate  @relation(fields: [candidateId], references: [id])
+  jobPosting JobPosting @relation(fields: [jobPostingId], references: [id])
 
   timelineId Int
   @@unique([jobPostingId, candidateId], name: "uniqueJobPostingCandidate")
@@ -118,6 +119,10 @@ model Timeline {
   title               String
   description         String
   endDate             DateTime?
+  candidateId         Int?
+  jobPostingId        Int
+  jobPosting          JobPosting            @relation(fields: [jobPostingId], references: [id])
+  candidate           Candidate?            @relation(fields: [candidateId], references: [id])
   CandidateJobPosting CandidateJobPosting[]
 }
 

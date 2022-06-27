@@ -1,5 +1,5 @@
 import { prisma } from '@/core/db';
-import { salaryType, seniority, jobPostingType, JobPostingTech } from '@prisma/client';
+import { salaryType, seniority, jobPostingType, JobPostingTech, Timeline } from '@prisma/client';
 
 function parseSeniority(seniorityString: String): seniority {
   switch (seniorityString.toLowerCase()) {
@@ -52,7 +52,8 @@ const handler = async (req: any, res: any) => {
           include: {
             candidate: true
           }
-        }
+        },
+        timelines: true
       }
     });
     return res.status(200).send(jobPostings);
@@ -72,7 +73,8 @@ const handler = async (req: any, res: any) => {
       seniority,
       salaryType,
       jobPostingType,
-      technologies
+      technologies,
+      timeline
     } = req.body;
 
     var jobPosting = await prisma.jobPosting.create({
@@ -115,6 +117,17 @@ const handler = async (req: any, res: any) => {
         }
       });
       techs.push(jobPostingTech)
+    });
+
+    timeline.forEach(async (time: Timeline) => {
+      await prisma.timeline.create({
+        data: {
+          title: time.title,
+          description: time.description,
+          jobPostingId: jobPosting.id,
+          candidateId: null
+        }
+      });
     });
 
     return res.status(200).send(jobPosting);
