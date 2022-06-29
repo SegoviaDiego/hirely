@@ -45,6 +45,19 @@ const getBgColor = (id: number) => {
   }
 };
 
+const getBgColorPicture = (id: number) => {
+  switch (id) {
+    case 1:
+      return 'bg-green-200';
+    case 2:
+      return 'bg-yellow-200';
+    case 3:
+      return 'bg-red-200';
+    default:
+      return '';
+  }
+};
+
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
@@ -125,7 +138,7 @@ export const ProfileDrawerComponent = (props: IProfileProps) => {
                         <div>
                           <div className="flex">
                             <div
-                              className={`h-40 w-40 rounded-md ml-6 flex items-center justify-center bg-opacity-60“ ${getBgColor(
+                              className={`h-40 w-40 rounded-md ml-6 flex items-center justify-center bg-opacity-90 ${getBgColorPicture(
                                 selectedProfile?.matchType
                               )}`}
                             >
