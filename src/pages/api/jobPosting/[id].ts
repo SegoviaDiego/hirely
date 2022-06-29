@@ -16,12 +16,11 @@ const getMethod = async (req: any, res: any) => {
           },
           candidates: {
               include: {
-                  candidate: true,
-                  timeline: true
-              }
-          },
-          timelines: true
-      },
+                  candidate: true
+                    }
+                },
+                timelines: true
+            },
     });
 
     return res.status(200).json(jobPosting);

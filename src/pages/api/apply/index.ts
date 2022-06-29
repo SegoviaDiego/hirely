@@ -2,23 +2,16 @@ import { prisma } from '@/core/db';
 
 const handler = async (req: any, res: any) => {
     if (req.method === 'POST') {
-        const { id, jobPostingId, candidateId, instance, timelineId } = req.body;
+        const { id, jobPostingId, candidateId, instance, timeline } = req.body;
 
         if (id) {
             const candidateJobPosting = await prisma.candidateJobPosting.update({
                 where: { id: id },
                 data: {
                     instanceKanban: instance,
-                    timelineId: timelineId,
+                    timeline: timeline,
                 }
             });
-
-            await prisma.timeline.update({
-                where: { id: timelineId },
-                data: {
-                    endDate: new Date()
-                }
-            })
 
             return res.status(200).send(candidateJobPosting);;
         }
@@ -28,7 +21,7 @@ const handler = async (req: any, res: any) => {
                 jobPostingId: jobPostingId,
                 candidateId: candidateId,
                 instanceKanban: instance,
-                timelineId: timelineId
+                timeline: timeline
             }
         });
 

@@ -97,7 +97,6 @@ model Candidate {
 
   appliedJobPostings CandidateJobPosting[]
   techs              CandidateTech[]
-  Timeline           Timeline[]
 }
 
 model CandidateJobPosting {
@@ -105,12 +104,11 @@ model CandidateJobPosting {
   candidateId    Int
   jobPostingId   Int
   instanceKanban Int
-  timeline       Timeline @relation(fields: [timelineId], references: [id])
+  timeline       Int
 
   candidate  Candidate  @relation(fields: [candidateId], references: [id])
   jobPosting JobPosting @relation(fields: [jobPostingId], references: [id])
 
-  timelineId Int
   @@unique([jobPostingId, candidateId], name: "uniqueJobPostingCandidate")
 }
 
@@ -119,11 +117,8 @@ model Timeline {
   title               String
   description         String
   endDate             DateTime?
-  candidateId         Int?
   jobPostingId        Int
   jobPosting          JobPosting            @relation(fields: [jobPostingId], references: [id])
-  candidate           Candidate?            @relation(fields: [candidateId], references: [id])
-  CandidateJobPosting CandidateJobPosting[]
 }
 
 enum UserRole {
