@@ -45,7 +45,7 @@ const getBgColor = (id: number) => {
   }
 };
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
@@ -55,6 +55,12 @@ export const ProfileDrawerComponent = (props: IProfileProps) => {
 
   const handleSwap = () => {
     setShow(show === 'match' ? 'profile' : 'match');
+  };
+
+  const getInitials = (name: string): string => {
+    const nameArray = name.split(' ');
+
+    return `${nameArray[0]?.[0] || ''}${nameArray[1]?.[0] || ''}`;
   };
 
   return (
@@ -114,11 +120,19 @@ export const ProfileDrawerComponent = (props: IProfileProps) => {
                       <div className="pb-1 sm:pb-1">
                         <div>
                           <div className="flex">
-                            <img
-                              className="ml-6 h-40 w-40 rounded-md bg-cover"
-                              src={selectedProfile?.profileImageURL}
-                              alt=""
-                            />
+                            <div
+                              className={`h-40 w-40 rounded-md ml-6 flex items-center justify-center bg-opacity-60 ${getBgColor(
+                                selectedProfile.matchType
+                              )}`}
+                            >
+                              <p
+                                className={`${getColor(
+                                  selectedProfile.matchType
+                                )} font-semibold text-6xl`}
+                              >
+                                {getInitials(selectedProfile.fullName)}
+                              </p>
+                            </div>
                             <div className="px-4 sm:flex sm:items-start sm:px-6">
                               <div className="sm:flex-1">
                                 <div>

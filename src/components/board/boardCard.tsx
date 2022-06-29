@@ -47,6 +47,31 @@ export type MatchRating = {
   rating: number;
 };
 
+const getColor = (id: number) => {
+  switch (id) {
+    case 1:
+      return 'text-green-600';
+    case 2:
+      return 'text-yellow-600';
+    case 3:
+      return 'text-red-600';
+    default:
+      return '';
+  }
+};
+
+const getBgColor = (id: number) => {
+  switch (id) {
+    case 1:
+      return 'bg-green-200';
+    case 2:
+      return 'bg-yellow-200';
+    case 3:
+      return 'bg-red-200';
+    default:
+      return '';
+  }
+};
 const BoardCard = ({
   draggableProvided,
   candidate,
@@ -57,6 +82,13 @@ const BoardCard = ({
     setOpen(true);
     setSelectedProfile(candidate);
   };
+
+  const getInitials = (name: string): string => {
+    const nameArray = name.split(' ');
+
+    return `${nameArray[0]?.[0] || ''}${nameArray[1]?.[0] || ''}`;
+  };
+
   return (
     <div
       ref={draggableProvided?.innerRef}
@@ -64,12 +96,14 @@ const BoardCard = ({
       {...draggableProvided?.dragHandleProps}
       className="mb-5 w-full overflow-hidden rounded-xl bg-white p-5"
     >
-      <div className="sm:flex sm:items-center sm:justify-between">
+      <div className="sm:flex sm:justify-between">
         <div className="sm:flex sm:space-x-5">
           <div className="text-center sm:mt-0 sm:pt-1 sm:text-left">
             <div
               onClick={() => handleCandidateProfile()}
-              className="w-24 cursor-pointer rounded-md bg-amber-300 text-center text-sm text-amber-700"
+              className={`w-24 cursor-pointer rounded-md text-center text-sm ${getColor(
+                candidate.matchType
+              )} ${getBgColor(candidate.matchType)}`}
             >
               {candidate?.match}% match
             </div>
@@ -82,11 +116,17 @@ const BoardCard = ({
           </div>
         </div>
         <div className="">
-          <img
-            className="mx-auto h-20 w-20 rounded-full"
-            src={candidate?.profileImageURL}
-            alt=""
-          />
+          <div
+            className={`rounded-full ${getBgColor(
+              candidate.matchType
+            )} h-16 w-16 flex justify-center items-center`}
+          >
+            <p
+              className={`font-semibold ${getColor(
+                candidate.matchType
+              )} text-xl`}
+            >{`${getInitials(candidate.fullName)}`}</p>
+          </div>
         </div>
       </div>
       <div className="flex w-full flex-col">
