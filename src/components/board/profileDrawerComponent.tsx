@@ -58,9 +58,13 @@ export const ProfileDrawerComponent = (props: IProfileProps) => {
   };
 
   const getInitials = (name: string): string => {
-    const nameArray = name.split(' ');
+    if (name) {
+      const nameArray = name.split(' ');
 
-    return `${nameArray[0]?.[0] || ''}${nameArray[1]?.[0] || ''}`;
+      return `${nameArray[0]?.[0] || ''}${nameArray[1]?.[0] || ''}`;
+    }
+
+    return '';
   };
 
   return (
@@ -121,16 +125,16 @@ export const ProfileDrawerComponent = (props: IProfileProps) => {
                         <div>
                           <div className="flex">
                             <div
-                              className={`h-40 w-40 rounded-md ml-6 flex items-center justify-center bg-opacity-60 ${getBgColor(
-                                selectedProfile.matchType
+                              className={`h-40 w-40 rounded-md ml-6 flex items-center justify-center bg-opacity-60“ ${getBgColor(
+                                selectedProfile?.matchType
                               )}`}
                             >
                               <p
                                 className={`${getColor(
-                                  selectedProfile.matchType
+                                  selectedProfile?.matchType
                                 )} font-semibold text-6xl`}
                               >
-                                {getInitials(selectedProfile.fullName)}
+                                {getInitials(selectedProfile?.fullName)}
                               </p>
                             </div>
                             <div className="px-4 sm:flex sm:items-start sm:px-6">
