@@ -6,16 +6,17 @@ const salt = parseInt(process.env.NEXTAUTH_SALT_ROUNDS || '10', 10);
 
 const handler = async (req: any, res: any) => {
   if (req.method === 'POST') {
-    const { name, email, password } = req.body;
+    const { name: fullName, email, password, role } = req.body;
 
     try {
       const hash = await bcrypt.hash(password, salt);
 
       await prisma.user.create({
         data: {
-          name,
+          fullName,
           email,
           password: hash,
+          role: role || 'USER',
         },
       });
 

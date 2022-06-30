@@ -23,7 +23,7 @@ model User {
 }
 
 model JobPosting {
-  id                Int      @id @unique @default(autoincrement())
+  id           Int      @id @unique @default(autoincrement())
   title        String
   description  String?
   requirements String?
