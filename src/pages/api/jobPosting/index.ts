@@ -50,7 +50,11 @@ const handler = async (req: any, res: any) => {
         },
         candidates: {
           include: {
-            candidate: true
+            candidate: {
+              include: {
+                techs: true
+              }
+            }
           }
         },
         timelines: true
