@@ -23,9 +23,39 @@ export default function CreateCandidateModal(props: CreateCandidateModalProps) {
 
   const cancelButtonRef = useRef(null);
 
-  const handleSuccess = () => {
-    setTimeout(() => setCurrentStep(1), 1000);
-    setCandidateOpen(false);
+  const createCandidate = async (event: any) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const createdCandidate = await fetch('/api/candidates', {
+      body: JSON.stringify({
+        fullName: event.target.fullName.value,
+        email: event.target.email.value,
+        seniority: event.target.seniority.value,
+        salary: event.target.salary.value,
+        education: event.target.education.value,
+        experience: event.target.experience.value,
+        permanencia: event.target.permanencia.value,
+        perfilExterno: event.target.perfilExterno.value,
+        empresaActual: event.target.empresaActual.value,
+        vacaciones: event.target.vacaciones.value,
+        fecha_nac: event.target.fecha_nac.value,
+        edad: event.target.edad.value,
+        sexo: event.target.sexo.value,
+        posicionActual: event.target.posicionActual.value,
+        ingles: event.target.ingles.value,
+        modalidad: event.target.modalidad.value,
+        tecnologies: event.target.tecnologies.value,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+    });
+
+    if (createdCandidate) {
+      setCurrentStep(currentStep + 1);
+    }
   };
 
   return (
@@ -59,71 +89,86 @@ export default function CreateCandidateModal(props: CreateCandidateModalProps) {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <div className="relative rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                {currentStep === 1 && <FirstStep />}
-                {currentStep === 2 && <SecondStep />}
-                {currentStep === 3 && <ThirdStep />}
-                {currentStep === 4 && (
-                  <FourthStep
-                    paymentMethod={paymentMethod}
-                    setPaymentMethod={setPaymentMethod}
-                  />
-                )}
-                {currentStep === 5 && <SuccessStep />}
-                <div className="mt-6 rounded-b-lg bg-gray-50 px-4 py-3 sm:flex sm:px-6">
-                  {currentStep !== 5 ? (
-                    <>
-                      {currentStep === 1 ? (
-                        <button
-                          type="button"
-                          className="inline-flex w-full justify-center rounded-2xl border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-indigo-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:ml-3 sm:w-full sm:bg-opacity-30 sm:text-sm"
-                          onClick={() => setCandidateOpen(false)}
-                        >
-                          Cancelar
-                        </button>
-                      ) : (
-                        <button
-                          type="button"
-                          className="inline-flex w-full justify-center rounded-2xl border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-indigo-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:ml-3 sm:w-full sm:bg-opacity-30 sm:text-sm"
-                          onClick={() => setCurrentStep(currentStep - 1)}
-                          ref={cancelButtonRef}
-                        >
-                          Anterior
-                        </button>
-                      )}
-                      {currentStep !== 4 ? (
-                        <button
-                          type="button"
-                          className="mt-3 inline-flex w-full justify-center rounded-2xl border bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-full sm:text-sm"
-                          onClick={() => setCurrentStep(currentStep + 1)}
-                          ref={cancelButtonRef}
-                        >
-                          Siguiente
-                        </button>
-                      ) : (
-                        <button
-                          type="button"
-                          className="mt-3 inline-flex w-full justify-center rounded-2xl border bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-full sm:text-sm"
-                          onClick={() => setCurrentStep(currentStep + 1)}
-                          ref={cancelButtonRef}
-                        >
-                          Finalizar
-                        </button>
-                      )}
-                    </>
-                  ) : (
-                    <Link href="/candidates/4">
-                      <a
+              <form
+                action="#"
+                method="POST"
+                className="space-y-6"
+                onSubmit={createCandidate}
+              >
+                <div className="relative rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                  <div className={`${currentStep !== 1 && 'hidden'}`}>
+                    <FirstStep />
+                  </div>
+                  <div className={`${currentStep !== 2 && 'hidden'}`}>
+                    <SecondStep />
+                  </div>
+                  <div className={`${currentStep !== 3 && 'hidden'}`}>
+                    <ThirdStep />
+                  </div>
+                  <div className={`${currentStep !== 4 && 'hidden'}`}>
+                    <FourthStep
+                      paymentMethod={paymentMethod}
+                      setPaymentMethod={setPaymentMethod}
+                    />
+                  </div>
+                  <div className={`${currentStep !== 5 && 'hidden'}`}>
+                    <SuccessStep />
+                  </div>
+
+                  <div className="mt-6 rounded-b-lg bg-gray-50 px-4 py-3 sm:flex sm:px-6">
+                    {currentStep === 1 && (
+                      <button
+                        type="button"
+                        className="inline-flex w-full justify-center rounded-2xl border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-indigo-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:ml-3 sm:w-full sm:bg-opacity-30 sm:text-sm"
+                        onClick={() => setCandidateOpen(false)}
+                      >
+                        Cancelar
+                      </button>
+                    )}
+
+                    {currentStep > 1 && currentStep < 5 && (
+                      <button
+                        type="button"
+                        className="inline-flex w-full justify-center rounded-2xl border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-indigo-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:ml-3 sm:w-full sm:bg-opacity-30 sm:text-sm"
+                        onClick={() => setCurrentStep(currentStep - 1)}
+                      >
+                        Anterior
+                      </button>
+                    )}
+
+                    {currentStep <= 3 && (
+                      <button
                         type="button"
                         className="mt-3 inline-flex w-full justify-center rounded-2xl border bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-full sm:text-sm"
-                        ref={cancelButtonRef}
+                        onClick={() => setCurrentStep(currentStep + 1)}
                       >
-                        Ir al Detalle
-                      </a>
-                    </Link>
-                  )}
+                        Siguiente
+                      </button>
+                    )}
+
+                    {currentStep === 4 && (
+                      <button
+                        type="submit"
+                        className="mt-3 inline-flex w-full justify-center rounded-2xl border bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-full sm:text-sm"
+                      >
+                        Finalizar
+                      </button>
+                    )}
+
+                    {currentStep === 5 && (
+                      <Link href="/candidates/4">
+                        <a
+                          type="button"
+                          className="mt-3 inline-flex w-full justify-center rounded-2xl border bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-full sm:text-sm"
+                          ref={cancelButtonRef}
+                        >
+                          Ir al Detalle
+                        </a>
+                      </Link>
+                    )}
+                  </div>
                 </div>
-              </div>
+              </form>
             </Transition.Child>
           </div>
         </div>

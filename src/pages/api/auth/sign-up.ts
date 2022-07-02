@@ -1,5 +1,6 @@
-import { prisma } from '@/core/db';
 import { UserRole } from '@prisma/client';
+
+import { prisma } from '@/core/db';
 
 const bcrypt = require('bcrypt');
 
@@ -7,7 +8,7 @@ const salt = parseInt(process.env.NEXTAUTH_SALT_ROUNDS || '10', 10);
 
 const handler = async (req: any, res: any) => {
   if (req.method === 'POST') {
-    const { name: fullName, email, password, role } = req.body;
+    const { name: fullName, email, password } = req.body;
 
     try {
       const hash = await bcrypt.hash(password, salt);
@@ -17,7 +18,7 @@ const handler = async (req: any, res: any) => {
           fullName,
           email,
           password: hash,
-          role: UserRole.USER
+          role: UserRole.USER,
         },
       });
 
