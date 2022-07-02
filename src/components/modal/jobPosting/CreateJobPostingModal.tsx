@@ -25,11 +25,6 @@ export default function CreateJobPostingModal(
 
   const cancelButtonRef = useRef(null);
 
-  const handleSuccess = () => {
-    setTimeout(() => setCurrentStep(1), 1000);
-    setJobPostingOpen(false);
-  };
-
   return (
     <Transition.Root show={isOpen} as={Fragment}>
       <Dialog

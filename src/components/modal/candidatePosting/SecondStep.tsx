@@ -8,7 +8,7 @@ const animatedComponents = makeAnimated();
 
 export default function SecondStep() {
   return (
-    <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 rounded-t-lg">
+    <div className="rounded-t-lg bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
       <div className="sm:flex sm:items-start">
         <div className="mt-3 w-full sm:mt-0 sm:ml-4 sm:text-left">
           <Dialog.Title
@@ -27,8 +27,8 @@ export default function SecondStep() {
               </label>
               <input
                 type="text"
-                name="name"
-                id="name"
+                name="posicionActual"
+                id="posicionActual"
                 autoComplete="given-name"
                 placeholder="Posicion actual del candidato"
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -58,8 +58,8 @@ export default function SecondStep() {
                 Modalidad
               </label>
               <select
-                id="modality"
-                name="modality"
+                id="modalidad"
+                name="modalidad"
                 autoComplete="modality-name"
                 className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
               >
@@ -71,11 +71,13 @@ export default function SecondStep() {
             <div className="w-full">
               <label
                 htmlFor="tecnologies"
-                className="block text-sm font-medium text-gray-700 mb-2"
+                className="mb-2 block text-sm font-medium text-gray-700"
               >
                 Tecnologias
               </label>
               <ReactSelect
+                id="tecnologies"
+                name="tecnologies"
                 closeMenuOnSelect={false}
                 components={animatedComponents}
                 isMulti

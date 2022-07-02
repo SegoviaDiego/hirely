@@ -78,7 +78,6 @@ model Candidate {
   id                Int       @id @unique @default(autoincrement())
   fullName          String
   email             String    @unique
-  profilePictureURL String
   seniority         seniority
   salary            Decimal
   education         String
@@ -100,14 +99,16 @@ model Candidate {
 }
 
 model CandidateJobPosting {
-  id             Int      @id @unique @default(autoincrement())
+  id             Int @id @unique @default(autoincrement())
   candidateId    Int
   jobPostingId   Int
   instanceKanban Int
-  timeline       Int
+  timelineId     Int
 
   candidate  Candidate  @relation(fields: [candidateId], references: [id])
   jobPosting JobPosting @relation(fields: [jobPostingId], references: [id])
+
+  timeline Timeline @relation(fields: [timelineId], references: [id])
 
   @@unique([jobPostingId, candidateId], name: "uniqueJobPostingCandidate")
 }
@@ -119,6 +120,7 @@ model Timeline {
   endDate             DateTime?
   jobPostingId        Int
   jobPosting          JobPosting            @relation(fields: [jobPostingId], references: [id])
+  CandidateJobPosting CandidateJobPosting[]
 }
 
 enum UserRole {

@@ -1,17 +1,24 @@
+import {
+  salaryType,
+  seniority,
+  jobPostingType,
+  JobPostingTech,
+  Timeline,
+} from '@prisma/client';
+
 import { prisma } from '@/core/db';
-import { salaryType, seniority, jobPostingType, JobPostingTech, Timeline } from '@prisma/client';
 
 function parseSeniority(seniorityString: String): seniority {
   switch (seniorityString.toLowerCase()) {
-    case "trainee":
-      return seniority.TRAINEE
-    case "junior":
-      return seniority.JUNIOR
-    case "senior":
-      return seniority.SENIOR
-    case "semisenior":
+    case 'trainee':
+      return seniority.TRAINEE;
+    case 'junior':
+      return seniority.JUNIOR;
+    case 'senior':
+      return seniority.SENIOR;
+    case 'semisenior':
     default:
-      return seniority.SEMISENIOR
+      return seniority.SEMISENIOR;
   }
 }
 
@@ -45,20 +52,20 @@ const handler = async (req: any, res: any) => {
       include: {
         techs: {
           include: {
-            tech: true
-          }
+            tech: true,
+          },
         },
         candidates: {
           include: {
             candidate: {
               include: {
-                techs: true
-              }
-            }
-          }
+                techs: true,
+              },
+            },
+          },
         },
-        timelines: true
-      }
+        timelines: true,
+      },
     });
     return res.status(200).send(jobPostings);
   }
@@ -78,49 +85,49 @@ const handler = async (req: any, res: any) => {
       salaryType,
       jobPostingType,
       technologies,
-      timeline
+      timeline,
     } = req.body;
 
-    var jobPosting = await prisma.jobPosting.create({
+    const jobPosting = await prisma.jobPosting.create({
       data: {
-        title: title,
-        description: description,
-        requirements: requirements,
-        commodities: commodities,
-        usdMinSalary: parseInt(usdMinSalary),
-        usdMaxSalary: parseInt(usdMaxSalary),
-        arsMinSalary: parseInt(arsMinSalary),
-        arsMaxSalary: parseInt(arsMaxSalary),
+        title,
+        description,
+        requirements,
+        commodities,
+        usdMinSalary: parseInt(usdMinSalary, 10),
+        usdMaxSalary: parseInt(usdMaxSalary, 10),
+        arsMinSalary: parseInt(arsMinSalary, 10),
+        arsMaxSalary: parseInt(arsMaxSalary, 10),
         authorId: user.id,
-        vacaciones: parseInt(vacaciones),
+        vacaciones: parseInt(vacaciones, 10),
         seniority: parseSeniority(seniority),
         salaryType: parseSalaryType(salaryType),
-        type: parseJobPostingType(jobPostingType)
-      }
+        type: parseJobPostingType(jobPostingType),
+      },
     });
 
-    const techs: Array<JobPostingTech> = []
+    const techs: Array<JobPostingTech> = [];
 
     technologies.forEach(async (title: string) => {
-      var tech = await prisma.tech.findFirst({
+      let tech = await prisma.tech.findFirst({
         where: {
-          title: title
-        }
+          title,
+        },
       });
       if (!tech) {
         tech = await prisma.tech.create({
           data: {
-            title: title
-          }
-        })
+            title,
+          },
+        });
       }
       const jobPostingTech = await prisma.jobPostingTech.create({
         data: {
           jobPostingId: jobPosting.id,
-          techId: tech.id
-        }
+          techId: tech.id,
+        },
       });
-      techs.push(jobPostingTech)
+      techs.push(jobPostingTech);
     });
 
     timeline.forEach(async (time: Timeline) => {
@@ -129,8 +136,8 @@ const handler = async (req: any, res: any) => {
           title: time.title,
           description: time.description,
           jobPostingId: jobPosting.id,
-          candidateId: null
-        }
+          candidateId: null,
+        },
       });
     });
 

@@ -56,7 +56,7 @@ export default NextAuth({
             if (isValidPassword)
               return {
                 userId: user.id,
-                name: user.name,
+                name: user.fullName,
                 email: user.email,
               };
           }

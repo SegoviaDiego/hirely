@@ -9,22 +9,22 @@ const getMethod = async (req: any, res: any) => {
         id: Number.parseInt(id, 10),
       },
       include: {
-          techs: {
-              include: {
-                  tech: true
-              }
+        techs: {
+          include: {
+            tech: true,
           },
-          candidates: {
+        },
+        candidates: {
+          include: {
+            candidate: {
               include: {
-                  candidate: {
-                            include: {
-                                techs: true
-                            }
-                        }
-                    }
-                },
-                timelines: true
+                techs: true,
+              },
             },
+          },
+        },
+        timelines: true,
+      },
     });
 
     return res.status(200).json(jobPosting);
