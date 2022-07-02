@@ -8,6 +8,11 @@ const getMethod = async (req: any, res: any) => {
       where: {
         id: Number.parseInt(id, 10),
       },
+      include: {
+        techs: true,
+        author: true,
+        candidates: true,
+      },
     });
 
     return res.status(200).json(jobPosting);
@@ -32,12 +37,36 @@ const deleteMethod = async (req: any, res: any) => {
   }
 };
 
+const putMethod = async (req: any, res: any) => {
+  const { id } = req.query;
+
+  const { jobPostingId, candidateId } = req.body;
+
+  try {
+    const candidateJobPosting = await prisma.candidateJobPosting.update({
+      data: {
+        jobPostingId,
+        candidateId,
+      },
+      where: {
+        id,
+      },
+    });
+
+    return res.status(200).json(candidateJobPosting);
+  } catch (err: any) {
+    return res.status(503).json({ err: err.toString() });
+  }
+};
+
 const handler = async (req: any, res: any) => {
   switch (req.method) {
     case 'GET':
       return getMethod(req, res);
     case 'DELETE':
       return deleteMethod(req, res);
+    case 'PUT':
+      return putMethod(req, res);
     default:
       return res
         .status(405)

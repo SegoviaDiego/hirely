@@ -8,7 +8,22 @@ import { Main } from '@/templates/Main';
 
 const Board = () => {
   const [openProfile, setOpenProfile] = useState(false);
-  const [selectedProfile, setSelectedProfile] = useState<Candidate>(null);
+  const [selectedProfile, setSelectedProfile] = useState<Candidate | null>(
+    null
+  );
+
+  // Should hit to recommendations.
+  // const { isLoading, data } = useQuery(
+  //   'jobPostingBoard',
+  //   () =>
+  //     request({
+  //       url: `/jobPosting/${id}`,
+  //       method: 'GET',
+  //     }),
+  //   {
+  //     enabled: !!id,
+  //   }
+  // );
 
   return (
     <Main meta={<Meta title="Hirely" description="Your hiring buddy." />}>
@@ -17,12 +32,12 @@ const Board = () => {
       </h2>
       <BoardComponent
         setOpen={setOpenProfile}
-        setSelectedProfile={setSelectedProfile}
+        setSelectedProfile={setSelectedProfile as any}
       />
       <ProfileDrawerComponent
         open={openProfile}
         setOpen={setOpenProfile}
-        selectedProfile={selectedProfile}
+        selectedProfile={selectedProfile as any}
       />
     </Main>
   );

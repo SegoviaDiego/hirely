@@ -44,6 +44,10 @@ module.exports = {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
+      animation: {
+        bounce200: 'bounce 1s infinite 200ms',
+        bounce400: 'bounce 1s infinite 400ms',
+      },
     },
   },
   // eslint-disable-next-line global-require,import/no-extraneous-dependencies

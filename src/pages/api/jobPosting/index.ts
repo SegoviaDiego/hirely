@@ -1,22 +1,10 @@
 import { prisma } from '@/core/db';
 
-const putMethod = async (req: any, res: any) => {
-  const { id } = req.query;
-
-  const { jobPostingId, candidateId } = req.body;
-
+const getMethod = async (_: any, res: any) => {
   try {
-    const candidateJobPosting = await prisma.candidateJobPosting.update({
-      data: {
-        jobPostingId,
-        candidateId,
-      },
-      where: {
-        id,
-      },
-    });
+    const jobPostings = await prisma.jobPosting.findMany();
 
-    return res.status(200).json(candidateJobPosting);
+    return res.status(200).json(jobPostings);
   } catch (err: any) {
     return res.status(503).json({ err: err.toString() });
   }
@@ -24,8 +12,8 @@ const putMethod = async (req: any, res: any) => {
 
 const handler = async (req: any, res: any) => {
   switch (req.method) {
-    case 'PUT':
-      return putMethod(req, res);
+    case 'GET':
+      return getMethod(req, res);
     default:
       return res
         .status(405)
