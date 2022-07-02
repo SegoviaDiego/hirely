@@ -1,13 +1,8 @@
 import { useState } from 'react';
 
-import {
-  PencilAltIcon,
-  PlusIcon,
-  SearchIcon,
-  TrashIcon,
-} from '@heroicons/react/solid';
+import { PlusIcon, SearchIcon } from '@heroicons/react/solid';
 
-import CreateJobPostingModal from '@/components/modal/jobPosting/CreateJobPostingModal';
+import CreateCandidateModal from '@/components/modal/candidatePosting/CreateCandidateModal';
 import { Meta } from '@/layout/Meta';
 import { Main } from '@/templates/Main';
 
@@ -37,15 +32,15 @@ const positions = [
 
 const Positions = () => {
   // @TODO: Redirect to sign-in or base path for authenticated users.
-  const [jobPostingOpen, setJobPostingOpen] = useState(false);
+  const [candidateOpen, setCandidateOpen] = useState(false);
 
   const [jobPostings] = useState(positions);
 
   return (
     <Main meta={<Meta title="Hirely" description="Your hiring buddy." />}>
-      <CreateJobPostingModal
-        isOpen={jobPostingOpen}
-        setJobPostingOpen={setJobPostingOpen}
+      <CreateCandidateModal
+        isOpen={candidateOpen}
+        setCandidateOpen={setCandidateOpen}
       />
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="sm:flex sm:items-center">
@@ -57,7 +52,7 @@ const Positions = () => {
           </div>
           <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
             <button
-              onClick={() => setJobPostingOpen(true)}
+              onClick={() => setCandidateOpen(true)}
               type="button"
               className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
             >
@@ -126,9 +121,7 @@ const Positions = () => {
                           </div>
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                          <div className="text-gray-900">
-                            {position.mail}
-                          </div>
+                          <div className="text-gray-900">{position.mail}</div>
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                           <div className="text-gray-900">
