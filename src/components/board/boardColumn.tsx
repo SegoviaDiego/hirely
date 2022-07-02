@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react';
+
 import { Draggable, DroppableProvided } from 'react-beautiful-dnd';
 
 import BoardCard, { Candidate } from '@/components/board/boardCard';
@@ -5,6 +7,8 @@ import BoardCard, { Candidate } from '@/components/board/boardCard';
 export type BoardColumnProps = {
   column: BoardColumnData;
   draggableProvided: DroppableProvided;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  setSelectedProfile: Dispatch<SetStateAction<Candidate>>;
 };
 
 export type BoardColumnData = {
@@ -13,7 +17,12 @@ export type BoardColumnData = {
   candidates: Candidate[];
 };
 
-const BoardColumn = ({ draggableProvided, column }: BoardColumnProps) => {
+const BoardColumn = ({
+  draggableProvided,
+  column,
+  setOpen,
+  setSelectedProfile,
+}: BoardColumnProps) => {
   return (
     <div className="mx-2 flex h-full flex-1 flex-col overflow-hidden rounded-t-xl bg-zinc-100 p-5">
       <div className="flex h-8 w-full flex-row items-center">
@@ -38,7 +47,12 @@ const BoardColumn = ({ draggableProvided, column }: BoardColumnProps) => {
             index={index}
           >
             {(provided) => (
-              <BoardCard draggableProvided={provided} candidate={candidate} />
+              <BoardCard
+                draggableProvided={provided}
+                candidate={candidate}
+                setOpen={setOpen}
+                setSelectedProfile={setSelectedProfile}
+              />
             )}
           </Draggable>
         ))}
