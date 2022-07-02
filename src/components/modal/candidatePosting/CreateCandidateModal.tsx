@@ -9,15 +9,13 @@ import SecondStep from './SecondStep';
 import SuccessStep from './SuccessStep';
 import ThirdStep from './ThirdStep';
 
-interface CreateJobPostingModalProps {
+interface CreateCandidateModalProps {
   isOpen: boolean;
-  setJobPostingOpen: Dispatch<SetStateAction<boolean>>;
+  setCandidateOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function CreateJobPostingModal(
-  props: CreateJobPostingModalProps
-) {
-  const { isOpen, setJobPostingOpen } = props;
+export default function CreateCandidateModal(props: CreateCandidateModalProps) {
+  const { isOpen, setCandidateOpen } = props;
   const [currentStep, setCurrentStep] = useState(1);
 
   // FourthStep State
@@ -27,7 +25,7 @@ export default function CreateJobPostingModal(
 
   const handleSuccess = () => {
     setTimeout(() => setCurrentStep(1), 1000);
-    setJobPostingOpen(false);
+    setCandidateOpen(false);
   };
 
   return (
@@ -36,7 +34,7 @@ export default function CreateJobPostingModal(
         as="div"
         className="relative z-10"
         initialFocus={cancelButtonRef}
-        onClose={setJobPostingOpen}
+        onClose={setCandidateOpen}
       >
         <Transition.Child
           as={Fragment}
@@ -79,7 +77,7 @@ export default function CreateJobPostingModal(
                         <button
                           type="button"
                           className="inline-flex w-full justify-center rounded-2xl border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-indigo-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:ml-3 sm:w-full sm:bg-opacity-30 sm:text-sm"
-                          onClick={() => setJobPostingOpen(false)}
+                          onClick={() => setCandidateOpen(false)}
                         >
                           Cancelar
                         </button>
@@ -114,7 +112,7 @@ export default function CreateJobPostingModal(
                       )}
                     </>
                   ) : (
-                    <Link href="/positions/4">
+                    <Link href="/candidates/4">
                       <a
                         type="button"
                         className="mt-3 inline-flex w-full justify-center rounded-2xl border bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-full sm:text-sm"
