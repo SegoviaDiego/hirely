@@ -36,11 +36,11 @@ function parseSalaryType(salaryString: String): salaryType {
 
 function parseJobPostingType(jobPostingTypeString: String): jobPostingType {
   switch (jobPostingTypeString.toLowerCase()) {
-    case 'remote':
+    case 'Remoto':
       return jobPostingType.REMOTE;
-    case 'office':
+    case 'Presencial':
       return jobPostingType.OFFICE;
-    case 'both':
+    case 'Hibrido':
     default:
       return jobPostingType.BOTH;
   }
