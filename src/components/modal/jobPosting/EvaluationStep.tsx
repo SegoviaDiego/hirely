@@ -1,14 +1,8 @@
-import { Dialog } from '@headlessui/react';
-import ReactSelect from 'react-select';
-import makeAnimated from 'react-select/animated';
-
-import { customStyles, technologiesOptions } from '@/constants/react-select';
-import {
-  PencilAltIcon,
-  PlusCircleIcon,
-  XCircleIcon,
-} from '@heroicons/react/outline';
 import { SetStateAction } from 'react';
+
+import { Dialog } from '@headlessui/react';
+import { PlusCircleIcon, XCircleIcon } from '@heroicons/react/outline';
+import makeAnimated from 'react-select/animated';
 
 const animatedComponents = makeAnimated();
 
@@ -73,7 +67,7 @@ export default function EvaluationStep(props: EvaluationStepProps) {
                         </div>
                       ) : (
                         <div className="flex-col items-center">
-                          <p className="font-bold text-xl mr-2">
+                          <p className="mr-2 text-xl font-bold">
                             {timel.title}
                           </p>
                           <p className="text-gray-500">{timel.desc}</p>

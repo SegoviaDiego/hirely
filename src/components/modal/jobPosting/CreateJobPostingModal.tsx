@@ -47,7 +47,7 @@ export default function CreateJobPostingModal(
 
   // TODO: Hacerlo funcionar para editar el timeline
   const handleEditStep = (index: number) => {
-    if (timeline) {
+    if (timeline && index) {
       // timeline[index] = timeline[index];
       setTimeline({
         ...timeline,
