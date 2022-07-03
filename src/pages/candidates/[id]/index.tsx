@@ -195,7 +195,7 @@ const Index = () => {
                 Feha de Nacimiento
               </label>
               <input
-                value={data.fecha_nac}
+                value={data.fecha_nac.split('T')[0]}
                 type="text"
                 name="fecha_nac"
                 id="fecha_nac"
