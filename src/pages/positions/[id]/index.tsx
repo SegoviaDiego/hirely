@@ -313,7 +313,7 @@ const Index = () => {
               </select>
               <div className="mt-6 flex justify-end">
                 {/* TO DO: This should navigate using the jobPosting id. */}
-                <Link href="/positions/1/board">
+                <Link href={`/positions/${data.id}/board`}>
                   <a
                     type="button"
                     className="mt-3 inline-flex w-56 justify-center rounded-3xl border bg-indigo-600 p-4 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:text-sm"
