@@ -3,11 +3,14 @@ import { Dispatch, Fragment, SetStateAction, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import Link from 'next/link';
 
+import EvaluationStep from './EvaluationStep';
 import FirstStep from './FirstStep';
 import FourthStep from './FourthStep';
 import SecondStep from './SecondStep';
 import SuccessStep from './SuccessStep';
 import ThirdStep from './ThirdStep';
+
+const defaultNewStep = { title: '', desc: '' };
 
 interface CreateJobPostingModalProps {
   isOpen: boolean;
@@ -19,11 +22,39 @@ export default function CreateJobPostingModal(
 ) {
   const { isOpen, setJobPostingOpen } = props;
   const [currentStep, setCurrentStep] = useState(1);
+  const [timeline, setTimeline] = useState<{}[]>([]);
+  const [newStep, setNewStep] = useState(defaultNewStep);
+  const [editStep, setEditStep] = useState(-1);
 
   // FourthStep State
   const [paymentMethod, setPaymentMethod] = useState(1);
 
   const cancelButtonRef = useRef(null);
+
+  const handleAddStep = async () => {
+    if (timeline) {
+      setTimeline([...timeline, newStep]);
+      setNewStep(defaultNewStep);
+    }
+  };
+
+  const handleDeleteStep = (i: number) => {
+    if (timeline) {
+      timeline.splice(i, 1);
+      setTimeline([...timeline]);
+    }
+  };
+
+  // TODO: Hacerlo funcionar para editar el timeline
+  const handleEditStep = (index: number) => {
+    if (timeline) {
+      // timeline[index] = timeline[index];
+      setTimeline({
+        ...timeline,
+      });
+      setEditStep(-1);
+    }
+  };
 
   const createJobPosting = async (event: any) => {
     event.preventDefault();
@@ -41,7 +72,7 @@ export default function CreateJobPostingModal(
         authorId: event.target.authorId.value,
         usdMinSalary: event.target.usdMinSalary.value,
         vacaciones: event.target.vacaciones.value,
-        timelines: event.target.timelines.value,
+        timelines: timeline,
         arsMinSalary: event.target.arsMinSalary.value,
         arsMaxSalary: event.target.arsMaxSalary.value,
         salaryType: event.target.salaryType.value,
@@ -96,7 +127,7 @@ export default function CreateJobPostingModal(
                 className="space-y-6"
                 onSubmit={createJobPosting}
               >
-                <div className="relative rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                <div className="relative min-w-[500px] rounded-lg bg-white text-left shadow-xl transition-all sm:my-8">
                   <div className={`${currentStep !== 1 && 'hidden'}`}>
                     <FirstStep />
                   </div>
@@ -113,6 +144,19 @@ export default function CreateJobPostingModal(
                     />
                   </div>
                   <div className={`${currentStep !== 5 && 'hidden'}`}>
+                    <EvaluationStep
+                      timeline={timeline}
+                      editStep={editStep}
+                      setEditStep={setEditStep}
+                      handleAddStep={handleAddStep}
+                      handleDeleteStep={handleDeleteStep}
+                      setTimeline={setTimeline}
+                      handleEditStep={handleEditStep}
+                      newStep={newStep}
+                      setNewStep={setNewStep}
+                    />
+                  </div>
+                  <div className={`${currentStep !== 6 && 'hidden'}`}>
                     <SuccessStep />
                   </div>
                   <div className="mt-6 rounded-b-lg bg-gray-50 px-4 py-3 sm:flex sm:px-6">
@@ -126,7 +170,7 @@ export default function CreateJobPostingModal(
                       </button>
                     )}
 
-                    {currentStep > 1 && currentStep < 5 && (
+                    {currentStep > 1 && currentStep < 6 && (
                       <button
                         type="button"
                         className="inline-flex w-full justify-center rounded-2xl border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-indigo-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:ml-3 sm:w-full sm:bg-opacity-30 sm:text-sm"
@@ -136,7 +180,7 @@ export default function CreateJobPostingModal(
                       </button>
                     )}
 
-                    {currentStep <= 3 && (
+                    {currentStep <= 4 && (
                       <button
                         type="button"
                         className="mt-3 inline-flex w-full justify-center rounded-2xl border bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-full sm:text-sm"
@@ -146,7 +190,7 @@ export default function CreateJobPostingModal(
                       </button>
                     )}
 
-                    {currentStep === 4 && (
+                    {currentStep === 5 && (
                       <button
                         type="submit"
                         className="mt-3 inline-flex w-full justify-center rounded-2xl border bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-full sm:text-sm"
@@ -155,7 +199,7 @@ export default function CreateJobPostingModal(
                       </button>
                     )}
 
-                    {currentStep === 5 && (
+                    {currentStep === 6 && (
                       <Link href="/jobPosting/4">
                         <a
                           type="button"
