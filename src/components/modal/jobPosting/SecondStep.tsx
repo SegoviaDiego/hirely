@@ -1,7 +1,8 @@
-import { customStyles, technologiesOptions } from '@/constants/react-select';
 import { Dialog } from '@headlessui/react';
 import ReactSelect from 'react-select';
 import makeAnimated from 'react-select/animated';
+
+import { customStyles, technologiesOptions } from '@/constants/react-select';
 
 const animatedComponents = makeAnimated();
 
@@ -19,15 +20,15 @@ export default function SecondStep() {
           <div className="mt-6 w-full space-y-4">
             <div className="w-full">
               <label
-                htmlFor="first-name"
+                htmlFor="description"
                 className="block text-sm font-medium text-gray-700"
               >
                 Descripcion
               </label>
               <input
                 type="text"
-                name="name"
-                id="name"
+                name="description"
+                id="description"
                 autoComplete="given-name"
                 placeholder="Breve descripcion del puesto"
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -35,17 +36,18 @@ export default function SecondStep() {
             </div>
             <div className="w-full">
               <label
-                htmlFor="modality"
+                htmlFor="seniority"
                 className="block text-sm font-medium text-gray-700"
               >
-                Antiguedad
+                Seniority
               </label>
               <select
-                id="modality"
-                name="modality"
-                autoComplete="modality-name"
+                id="seniority"
+                name="seniority"
+                autoComplete="seniority-name"
                 className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
               >
+                <option>Trainee</option>
                 <option>Junior</option>
                 <option>Semi Senior</option>
                 <option>Senior</option>
@@ -53,7 +55,7 @@ export default function SecondStep() {
             </div>
             <div className="w-full">
               <label
-                htmlFor="tecnologies"
+                htmlFor="techs"
                 className="block text-sm font-medium text-gray-700 mb-2"
               >
                 Tecnologias

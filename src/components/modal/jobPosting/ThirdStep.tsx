@@ -14,14 +14,14 @@ export default function ThirdStep() {
           <div className="mt-6 w-full space-y-4">
             <div className="w-full">
               <label
-                htmlFor="first-name"
+                htmlFor="requirements"
                 className="block text-sm font-medium text-gray-700"
               >
                 Requisitos
               </label>
               <textarea
-                id="about"
-                name="about"
+                id="requirements"
+                name="requirements"
                 rows={4}
                 className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                 placeholder="Requisitos principales para la realizacion del trabajo"
@@ -30,14 +30,14 @@ export default function ThirdStep() {
             </div>
             <div className="w-full">
               <label
-                htmlFor="first-name"
+                htmlFor="commodities"
                 className="block text-sm font-medium text-gray-700"
               >
                 Beneficios
               </label>
               <textarea
-                id="about"
-                name="about"
+                id="commodities"
+                name="commodities"
                 rows={4}
                 className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                 placeholder="Beneficios que se le brindaran de parte de la empresa"

@@ -22,23 +22,19 @@ export default function FourthStep(props: FourthStepProps) {
           <div className="mt-6 w-full space-y-6">
             <div className="w-full">
               <label
-                htmlFor="first-name"
+                htmlFor="description"
                 className="block text-sm font-medium text-gray-700"
               >
-                Duracion estimada de la busqueda
+                Vacaciones
               </label>
-              <select
-                id="modality"
-                name="modality"
-                autoComplete="modality-name"
-                className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-              >
-                <option>1 Semana</option>
-                <option>2 Semanas</option>
-                <option>1 Mes</option>
-                <option>2 Meses</option>
-                <option>3 Meses</option>
-              </select>
+              <input
+                type="number"
+                name="vacaciones"
+                id="vacaciones"
+                autoComplete="given-name"
+                placeholder="Vacaciones ofrecidas"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              />
             </div>
             <div className="w-full">
               <label

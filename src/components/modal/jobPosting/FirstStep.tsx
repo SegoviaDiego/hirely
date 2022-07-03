@@ -21,8 +21,8 @@ export default function FirstStep() {
               </label>
               <input
                 type="text"
-                name="name"
-                id="name"
+                name="company"
+                id="company"
                 autoComplete="given-name"
                 placeholder="Nombre de la Empresa"
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -46,15 +46,15 @@ export default function FirstStep() {
             </div>
             <div className="w-full">
               <label
-                htmlFor="modality"
+                htmlFor="type"
                 className="block text-sm font-medium text-gray-700"
               >
                 Modalidad
               </label>
               <select
-                id="modality"
-                name="modality"
-                autoComplete="modality-name"
+                id="type"
+                name="type"
+                autoComplete="type-name"
                 className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
               >
                 <option>Remoto</option>
