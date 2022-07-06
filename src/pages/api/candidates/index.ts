@@ -56,7 +56,6 @@ function parseModalidad(modalidad: any): jobPostingType {
 const getMethod = async (_: any, res: any) => {
   try {
     const candidates = await prisma.candidate.findMany();
-
     return res.status(200).json(candidates);
   } catch (err: any) {
     return res.status(503).json({ err: err.toString() });

@@ -6,7 +6,6 @@ import { useQuery } from 'react-query';
 import ReactSelect from 'react-select';
 import makeAnimated from 'react-select/animated';
 
-import { request } from '@/axios';
 import { customStyles, technologiesOptions } from '@/constants/react-select';
 import { Meta } from '@/layout/Meta';
 import { Main } from '@/templates/Main';
@@ -19,13 +18,15 @@ const Index = () => {
 
   const [paymentMethod, setPaymentMethod] = useState(1);
 
-  const { isLoading, data } = useQuery(
-    'candidateDetail',
-    () =>
-      request({
-        url: `/candidates/${id}`,
-        method: 'GET',
-      }),
+  const { isLoading, data } = useQuery('candidateDetail', async () => {
+    const res = await fetch(`/api/candidates/${id}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'GET'
+    })
+    return await res.json();
+  },
     {
       enabled: !!id,
     }

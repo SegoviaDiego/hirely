@@ -8,7 +8,6 @@ import {
 } from '@heroicons/react/solid';
 import { useQuery } from 'react-query';
 
-import { request } from '@/axios';
 import CreateJobPostingModal from '@/components/modal/jobPosting/CreateJobPostingModal';
 import { Meta } from '@/layout/Meta';
 import { Main } from '@/templates/Main';
@@ -17,12 +16,15 @@ const Positions = () => {
   // @TODO: Redirect to sign-in or base path for authenticated users.
   const [jobPostingOpen, setJobPostingOpen] = useState(false);
 
-  const { isLoading, data } = useQuery('jobPosting', () =>
-    request({
-      url: '/jobPosting',
-      method: 'GET',
+  const { isLoading, data } = useQuery('jobPosting', async () => {
+    const res = await fetch('/api/jobPosting', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'GET'
     })
-  );
+    return await res.json();
+  });
 
   return (
     <Main meta={<Meta title="Hirely" description="Your hiring buddy." />}>
