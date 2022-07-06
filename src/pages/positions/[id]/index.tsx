@@ -20,13 +20,15 @@ const Index = () => {
   // @TODO: Redirect to sign-in or base path for authenticated users.
   const [, setPaymentMethod] = useState(1);
 
-  const { isLoading, isIdle, data } = useQuery(
-    'jobPostingDetail',
-    () =>
-      request({
-        url: `/jobPosting/${id}`,
-        method: 'GET',
-      }),
+  const { isLoading, isIdle, data } = useQuery('jobPostingDetail', async () => {
+    const res = await fetch(`/api/jobPosting/${id}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'GET'
+    })
+    return await res.json();
+  },
     {
       enabled: !!id,
     }

@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { PlusIcon, SearchIcon } from '@heroicons/react/solid';
 import { useQuery } from 'react-query';
 
-import { request } from '@/axios';
 import CreateCandidateModal from '@/components/modal/candidatePosting/CreateCandidateModal';
 import { Meta } from '@/layout/Meta';
 import { Main } from '@/templates/Main';
@@ -12,12 +11,15 @@ const Positions = () => {
   // @TODO: Redirect to sign-in or base path for authenticated users.
   const [candidateOpen, setCandidateOpen] = useState(false);
 
-  const { isLoading, data } = useQuery('candidates', () =>
-    request({
-      url: '/candidates',
-      method: 'GET',
+  const { isLoading, data } = useQuery('candidates', async () => {
+    const res = await fetch('/api/candidates', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'GET'
     })
-  );
+    return await res.json();
+  });
 
   return (
     <Main meta={<Meta title="Hirely" description="Your hiring buddy." />}>
