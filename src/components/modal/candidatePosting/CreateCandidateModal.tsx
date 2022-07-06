@@ -17,6 +17,7 @@ interface CreateCandidateModalProps {
 export default function CreateCandidateModal(props: CreateCandidateModalProps) {
   const { isOpen, setCandidateOpen } = props;
   const [currentStep, setCurrentStep] = useState(1);
+  const [candidateCreated, setCandidateCreated] = useState({ id: 0 });
 
   // FourthStep State
   const [paymentMethod, setPaymentMethod] = useState(1);
@@ -52,7 +53,8 @@ export default function CreateCandidateModal(props: CreateCandidateModalProps) {
       },
       method: 'POST',
     });
-
+    const parseCandidate = await createdCandidate.json();
+    setCandidateCreated(parseCandidate);
     if (createdCandidate) {
       setCurrentStep(currentStep + 1);
     }
@@ -156,7 +158,7 @@ export default function CreateCandidateModal(props: CreateCandidateModalProps) {
                     )}
 
                     {currentStep === 5 && (
-                      <Link href="/candidates/4">
+                      <Link href={`/candidates/${candidateCreated?.id}`}>
                         <a
                           type="button"
                           className="mt-3 inline-flex w-full justify-center rounded-2xl border bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-full sm:text-sm"

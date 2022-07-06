@@ -44,9 +44,9 @@ function parseIngles(ingles: String): nivelIngles {
 
 function parseModalidad(modalidad: any): jobPostingType {
   switch (modalidad.toLowerCase()) {
-    case 'remote':
+    case 'remoto':
       return jobPostingType.REMOTE;
-    case 'office':
+    case 'presencial':
       return jobPostingType.OFFICE;
     default:
       return jobPostingType.BOTH;

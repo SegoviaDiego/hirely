@@ -10,7 +10,7 @@ export default function SuccessStep() {
             as="h3"
             className="text-center text-lg font-medium leading-6 text-green-500"
           >
-            Job Posting creado exitosamente!
+            CV del candidato creado exitosamente!
           </Dialog.Title>
           <div className="my-8 flex justify-center">
             <div className="mx-auto flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0">
@@ -22,8 +22,8 @@ export default function SuccessStep() {
           </div>
           <div className="mt-6 w-full space-y-4 text-center">
             <p className="text-base text-gray-400">
-              El puesto de trabajo fue agregado a la lista, puedes entrar al
-              detalle para ver nuestros candidatos recomendados para el mismo
+              El cv del candidato fue agregado a la lista, puedes acceder al
+              detalle
             </p>
           </div>
         </div>

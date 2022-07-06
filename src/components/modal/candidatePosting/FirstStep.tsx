@@ -75,7 +75,7 @@ export default function FirstStep() {
               >
                 <option>Trainee</option>
                 <option>Junior</option>
-                <option>Semi Senior</option>
+                <option>SemiSenior</option>
                 <option>Senior</option>
               </select>
             </div>

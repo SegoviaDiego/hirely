@@ -80,17 +80,13 @@ const Index = () => {
               >
                 Modalidad
               </label>
-              <select
-                id="modality"
-                name="modality"
+              <input
+                id="modalidad"
+                name="modalidad"
                 value={data.modalidad}
                 autoComplete="modality-name"
                 className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-              >
-                <option>Remoto</option>
-                <option>Presencial</option>
-                <option>Hibrido</option>
-              </select>
+              />
             </div>
             <div className="col-span-6">
               <label
@@ -116,18 +112,13 @@ const Index = () => {
               >
                 Seniority
               </label>
-              <select
+              <input
                 id="seniority"
                 name="seniority"
                 value={data.seniority}
                 autoComplete="modality-name"
                 className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-              >
-                <option>Semi Senior</option>
-                <option>Trainee</option>
-                <option>Junior</option>
-                <option>Senior</option>
-              </select>
+              />
             </div>
 
             <div className="col-span-6">
@@ -158,13 +149,30 @@ const Index = () => {
                 htmlFor="first-name"
                 className="block text-sm font-medium text-gray-700"
               >
-                Años de Experiencia
+                Experiencia
               </label>
               <input
-                value={data.experience}
+                value={`${data.experience} años`}
                 type="text"
                 name="experience"
                 id="experience"
+                autoComplete="given-name"
+                placeholder="Titulo del Puesto"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              />
+            </div>
+            <div className="col-span-6">
+              <label
+                htmlFor="first-name"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Permanencia
+              </label>
+              <input
+                value={`${data.permanencia} años`}
+                type="text"
+                name="permanencia"
+                id="permanencia"
                 autoComplete="given-name"
                 placeholder="Titulo del Puesto"
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -189,13 +197,30 @@ const Index = () => {
             </div>
             <div className="col-span-6">
               <label
+                htmlFor="first-name"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Empresa Actual
+              </label>
+              <input
+                value={data.empresaActual}
+                type="text"
+                name="empresaActual"
+                id="empresaActual"
+                autoComplete="given-name"
+                placeholder="Titulo del Puesto"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              />
+            </div>
+            <div className="col-span-6">
+              <label
                 htmlFor="fecha_nac"
                 className="block text-sm font-medium text-gray-700"
               >
                 Feha de Nacimiento
               </label>
               <input
-                value={data.fecha_nac}
+                value={data.fecha_nac.split('T')[0]}
                 type="text"
                 name="fecha_nac"
                 id="fecha_nac"
@@ -254,21 +279,16 @@ const Index = () => {
               >
                 Nivel de Inglés
               </label>
-              <select
+              <input
+                value={data.ingles}
                 id="ingles"
                 name="ingles"
                 autoComplete="modality-name"
                 className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-              >
-                <option>2 Meses</option>
-                <option>1 Semana</option>
-                <option>2 Semanas</option>
-                <option>1 Mes</option>
-                <option>3 Meses</option>
-              </select>
+              />
               <div className="mt-6 flex justify-end">
                 {/* TO DO: This should navigate using the jobPosting id. */}
-                <Link href="/candidates/candidates">
+                <Link href="/candidates/">
                   <a
                     type="button"
                     className="mt-3 inline-flex w-56 justify-center rounded-3xl border bg-indigo-600 p-4 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:text-sm"
