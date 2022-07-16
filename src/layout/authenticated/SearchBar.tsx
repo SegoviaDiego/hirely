@@ -49,8 +49,8 @@ const SearchBar = ({ userNavigation, setSidebarOpen }: SearchBarProps) => {
         </div>
         <div className="ml-4 flex items-center md:ml-6">
           <div>
-            <p className="text-base">Tim Cook</p>
-            <p className="text-sm text-gray-400">FL, USA</p>
+            <p className="text-base">Diego Segovia</p>
+            <p className="text-sm text-gray-400">CABA, ARG</p>
           </div>
 
           {/* Profile dropdown */}
@@ -61,7 +61,7 @@ const SearchBar = ({ userNavigation, setSidebarOpen }: SearchBarProps) => {
                 <div className="flex">
                   <img
                     className="h-8 w-8 rounded-full"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    src="https://slp-statics.astockcdn.net/static_assets/staging/22spring/homepage/featured-contributors/card-5.jpg?width=580"
                     alt=""
                   />
                   <ChevronDownIcon className="w-6 text-gray-400" />

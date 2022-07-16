@@ -27,7 +27,7 @@ const navigation = [
   },
   {
     id: 3,
-    name: 'Candidates',
+    name: 'Candidatos',
     href: '/candidates/',
     icon: UserGroupIcon,
     current: false,

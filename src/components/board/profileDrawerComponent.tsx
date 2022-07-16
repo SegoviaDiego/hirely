@@ -10,6 +10,7 @@ import {
   DotsVerticalIcon,
   XIcon,
 } from '@heroicons/react/outline';
+import { useRouter } from 'next/router';
 
 import { Candidate } from './boardCard';
 
@@ -63,6 +64,9 @@ function classNames(...classes: string[]) {
 }
 
 export const ProfileDrawerComponent = (props: IProfileProps) => {
+  const router = useRouter();
+  const { id } = router.query;
+
   const { open, setOpen, selectedProfile } = props;
   const [show, setShow] = useState('match');
 
@@ -426,59 +430,128 @@ export const ProfileDrawerComponent = (props: IProfileProps) => {
                               <dt className="text-xl font-bold text-gray-900 sm:text-2xl">
                                 Evaluacion
                               </dt>
-                              <dd className="mt-4 text-sm text-gray-900 sm:col-span-2">
-                                <ol className="relative ml-3 max-h-[250px] overflow-y-visible border-l border-gray-200">
-                                  <li className="mb-10 ml-6">
-                                    <span className="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-indigo-200 ring-8 ring-white">
-                                      <CheckIcon className="w-4 text-indigo-600" />
-                                    </span>
-                                    <h3 className="mb-1 flex items-center text-lg font-semibold text-gray-900">
-                                      Entrevista con RR.HH.
-                                    </h3>
-                                    <time className="mb-2 block text-sm font-normal leading-none text-gray-400">
-                                      Finalizado el 13 de Junio del 2022
-                                    </time>
-                                  </li>
-                                  <li className="mb-10 ml-6">
-                                    <span className="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-indigo-200 ring-8 ring-white">
-                                      <ClockIcon className="w-4 text-indigo-600" />
-                                    </span>
-                                    <h3 className="mb-1 text-lg font-semibold text-gray-900">
-                                      Evaluacion tecnica{' '}
-                                      <span className="mr-2 ml-3 rounded bg-indigo-100 px-2.5 py-0.5 text-sm font-medium text-indigo-800">
-                                        Actual
+                              {id === '1' && (
+                                <dd className="mt-4 text-sm text-gray-900 sm:col-span-2">
+                                  <ol className="relative ml-3 max-h-[250px] overflow-y-visible border-l border-gray-200">
+                                    <li className="mb-10 ml-6">
+                                      <span className="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-indigo-200 ring-8 ring-white">
+                                        <CheckIcon className="w-4 text-indigo-600" />
                                       </span>
-                                    </h3>
-                                    <p className="text-base font-normal text-gray-500">
-                                      En esta etapa se le va a realizar una
-                                      evaluacion tecnica al candidato por uno de
-                                      nuestros devs mas senior
-                                    </p>
-                                  </li>
-                                  <li className="mb-10 ml-6">
-                                    <span className="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-indigo-200 ring-8 ring-white">
-                                      <CalendarIcon className="w-4 text-indigo-600" />
-                                    </span>
-                                    <h3 className="mb-1 text-lg font-semibold text-gray-900">
-                                      Entrevista con el CTO
-                                    </h3>
-                                  </li>
-                                </ol>
-                                <div className="mt-5 flex flex-wrap space-y-3 sm:space-y-0 sm:space-x-3">
-                                  <button
-                                    type="button"
-                                    className="inline-flex w-full flex-1 items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                                  >
-                                    Retroceder
-                                  </button>
-                                  <button
-                                    type="button"
-                                    className="inline-flex w-full shrink-0 items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:flex-1"
-                                  >
-                                    Avanzar
-                                  </button>
-                                </div>
-                              </dd>
+                                      <h3 className="mb-1 flex items-center text-lg font-semibold text-gray-900">
+                                        Entrevista con Talent Acquisition Lead
+                                      </h3>
+                                      <time className="mb-2 block text-sm font-normal leading-none text-gray-400">
+                                        Finalizado el 18 de Julio del 2022
+                                      </time>
+                                    </li>
+                                    <li className="mb-10 ml-6">
+                                      <span className="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-indigo-200 ring-8 ring-white">
+                                        <ClockIcon className="w-4 text-indigo-600" />
+                                      </span>
+                                      <h3 className="mb-1 text-lg font-semibold text-gray-900">
+                                        Evaluacion tecnica{' '}
+                                        <span className="mr-2 ml-3 rounded bg-indigo-100 px-2.5 py-0.5 text-sm font-medium text-indigo-800">
+                                          Actual
+                                        </span>
+                                      </h3>
+                                      <p className="text-base font-normal text-gray-500">
+                                        En esta etapa se le va a realizar una
+                                        evaluacion tecnica al candidato por uno
+                                        de nuestros devs mas senior
+                                      </p>
+                                    </li>
+                                    <li className="mb-10 ml-6">
+                                      <span className="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-indigo-200 ring-8 ring-white">
+                                        <CalendarIcon className="w-4 text-indigo-600" />
+                                      </span>
+                                      <h3 className="mb-1 text-lg font-semibold text-gray-900">
+                                        Entrevista con el Project Manager
+                                      </h3>
+                                    </li>
+                                  </ol>
+                                  <div className="mt-5 flex flex-wrap space-y-3 sm:space-y-0 sm:space-x-3">
+                                    <button
+                                      type="button"
+                                      className="inline-flex w-full flex-1 items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                    >
+                                      Retroceder
+                                    </button>
+                                    <button
+                                      type="button"
+                                      className="inline-flex w-full shrink-0 items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:flex-1"
+                                    >
+                                      Avanzar
+                                    </button>
+                                  </div>
+                                </dd>
+                              )}
+                              {id === '2' && (
+                                <dd className="mt-4 text-sm text-gray-900 sm:col-span-2">
+                                  <ol className="relative ml-3 overflow-y-visible border-l border-gray-200">
+                                    <li className="mb-10 ml-6">
+                                      <span className="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-indigo-200 ring-8 ring-white">
+                                        <CheckIcon className="w-4 text-indigo-600" />
+                                      </span>
+                                      <h3 className="mb-1 flex items-center text-lg font-semibold text-gray-900">
+                                        Entrevista cultural con Hiring Manager
+                                      </h3>
+                                      <time className="mb-2 block text-sm font-normal leading-none text-gray-400">
+                                        Finalizado el 10 de Julio del 2022
+                                      </time>
+                                    </li>
+                                    <li className="mb-10 ml-6">
+                                      <span className="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-indigo-200 ring-8 ring-white">
+                                        <CheckIcon className="w-4 text-indigo-600" />
+                                      </span>
+                                      <h3 className="mb-1 flex items-center text-lg font-semibold text-gray-900">
+                                        Entrevista técnica con equipo de
+                                        desarrollo
+                                      </h3>
+                                      <time className="mb-2 block text-sm font-normal leading-none text-gray-400">
+                                        Finalizado el 16 de Julio del 2022
+                                      </time>
+                                    </li>
+                                    <li className="mb-10 ml-6">
+                                      <span className="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-indigo-200 ring-8 ring-white">
+                                        <ClockIcon className="w-4 text-indigo-600" />
+                                      </span>
+                                      <h3 className="mb-1 text-lg font-semibold text-gray-900">
+                                        Evaluacion con Project Manager{' '}
+                                        <span className="mr-2 ml-3 rounded bg-indigo-100 px-2.5 py-0.5 text-sm font-medium text-indigo-800">
+                                          Actual
+                                        </span>
+                                      </h3>
+                                      <p className="text-base font-normal text-gray-500">
+                                        En esta etapa se le va a realizar una
+                                        evaluacion soft al candidato con el PM
+                                        del squad.
+                                      </p>
+                                    </li>
+                                    <li className="mb-10 ml-6">
+                                      <span className="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-indigo-200 ring-8 ring-white">
+                                        <CalendarIcon className="w-4 text-indigo-600" />
+                                      </span>
+                                      <h3 className="mb-1 text-lg font-semibold text-gray-900">
+                                        Entrevista con Tech Lead
+                                      </h3>
+                                    </li>
+                                  </ol>
+                                  <div className="my-5 flex flex-wrap space-y-3 sm:space-y-0 sm:space-x-3">
+                                    <button
+                                      type="button"
+                                      className="inline-flex w-full flex-1 items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                    >
+                                      Retroceder
+                                    </button>
+                                    <button
+                                      type="button"
+                                      className="inline-flex w-full shrink-0 items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:flex-1"
+                                    >
+                                      Avanzar
+                                    </button>
+                                  </div>
+                                </dd>
+                              )}
                             </div>
                           </dl>
                         </div>

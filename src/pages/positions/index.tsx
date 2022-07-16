@@ -11,19 +11,16 @@ import { useQuery } from 'react-query';
 import CreateJobPostingModal from '@/components/modal/jobPosting/CreateJobPostingModal';
 import { Meta } from '@/layout/Meta';
 import { Main } from '@/templates/Main';
+import { later } from '@/utils/later';
+import { mockedPositions } from '@/utils/mockedData';
 
 const Positions = () => {
   // @TODO: Redirect to sign-in or base path for authenticated users.
   const [jobPostingOpen, setJobPostingOpen] = useState(false);
 
   const { isLoading, data } = useQuery('jobPosting', async () => {
-    const res = await fetch('/api/jobPosting', {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'GET'
-    })
-    return await res.json();
+    await later(1000);
+    return Object.values(mockedPositions);
   });
 
   return (

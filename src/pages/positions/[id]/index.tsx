@@ -6,10 +6,11 @@ import { useQuery } from 'react-query';
 import ReactSelect from 'react-select';
 import makeAnimated from 'react-select/animated';
 
-import { request } from '@/axios';
 import { customStyles, technologiesOptions } from '@/constants/react-select';
 import { Meta } from '@/layout/Meta';
 import { Main } from '@/templates/Main';
+import { later } from '@/utils/later';
+import { mockedPositions } from '@/utils/mockedData';
 
 const animatedComponents = makeAnimated();
 
@@ -20,15 +21,12 @@ const Index = () => {
   // @TODO: Redirect to sign-in or base path for authenticated users.
   const [, setPaymentMethod] = useState(1);
 
-  const { isLoading, isIdle, data } = useQuery('jobPostingDetail', async () => {
-    const res = await fetch(`/api/jobPosting/${id}`, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'GET'
-    })
-    return await res.json();
-  },
+  const { isLoading, isIdle, data } = useQuery(
+    'jobPostingDetail',
+    async () => {
+      await later(1000);
+      return mockedPositions[id as any];
+    },
     {
       enabled: !!id,
     }
@@ -125,47 +123,13 @@ const Index = () => {
                   closeMenuOnSelect={false}
                   components={animatedComponents}
                   isMulti
-                  value={technologiesOptions.filter((tech) =>
-                    data?.techs.includes(tech.label)
-                  )}
+                  value={technologiesOptions.filter((tech) => {
+                    return data?.techs.includes(tech.value);
+                  })}
                   options={technologiesOptions}
                   styles={customStyles}
                 />
               </div>
-            </div>
-            <div className="col-span-6">
-              <label
-                htmlFor="first-name"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Beneficios
-              </label>
-              <textarea
-                value={data?.commodities}
-                id="about"
-                name="about"
-                rows={4}
-                className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                placeholder="Requisitos principales para la realizacion del trabajo"
-                defaultValue={''}
-              />
-            </div>
-            <div className="col-span-6">
-              <label
-                htmlFor="first-name"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Requisitos
-              </label>
-              <textarea
-                value={data?.requirements}
-                id="about"
-                name="about"
-                rows={4}
-                className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                placeholder="Beneficios que se le brindaran de parte de la empresa"
-                defaultValue={''}
-              />
             </div>
             <div className="col-span-6">
               <label
@@ -221,15 +185,30 @@ const Index = () => {
                   Hibrida
                 </label>
               </div>
-              {data?.salaryType !== 'USD' && (
-                <div className="mt-6 grid grid-cols-6 gap-6">
+              <div className="mt-6 grid grid-cols-6 gap-6">
+                <div className="relative col-span-6 sm:col-span-3">
+                  <div className="relative mt-1 rounded-md shadow-sm">
+                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                      <span className="text-gray-500 sm:text-sm">$</span>
+                    </div>
+                    <input
+                      value={data?.arsMinSalary}
+                      type="text"
+                      name="price"
+                      id="price"
+                      className="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      placeholder="0.00"
+                    />
+                  </div>
+                </div>
+                <div className="col-span-6 sm:col-span-3">
                   <div className="relative col-span-6 sm:col-span-3">
                     <div className="relative mt-1 rounded-md shadow-sm">
                       <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                         <span className="text-gray-500 sm:text-sm">$</span>
                       </div>
                       <input
-                        value={data?.arsMinSalary}
+                        value={data?.arsMaxSalary}
                         type="text"
                         name="price"
                         id="price"
@@ -238,81 +217,44 @@ const Index = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-span-6 sm:col-span-3">
-                    <div className="relative col-span-6 sm:col-span-3">
-                      <div className="relative mt-1 rounded-md shadow-sm">
-                        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                          <span className="text-gray-500 sm:text-sm">$</span>
-                        </div>
-                        <input
-                          value={data?.arsMaxSalary}
-                          type="text"
-                          name="price"
-                          id="price"
-                          className="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                          placeholder="0.00"
-                        />
-                      </div>
-                    </div>
-                  </div>
                 </div>
-              )}
-              {data?.salaryType !== 'ARS' && (
-                <div className="mt-6 grid grid-cols-6 gap-6">
-                  <div className="relative col-span-6 sm:col-span-3">
-                    <div className="relative mt-1 rounded-md shadow-sm">
-                      <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                        <span className="text-gray-500 sm:text-sm">U$D</span>
-                      </div>
-                      <input
-                        type="text"
-                        name="price"
-                        id="price"
-                        className="block w-full rounded-md border-gray-300 pl-11 pr-12 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                        placeholder="0.00"
-                        value={data?.usdMinSalary}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-span-6 sm:col-span-3">
-                    <div className="relative col-span-6 sm:col-span-3">
-                      <div className="relative mt-1 rounded-md shadow-sm">
-                        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                          <span className="text-gray-500 sm:text-sm">U$D</span>
-                        </div>
-                        <input
-                          type="text"
-                          name="price"
-                          id="price"
-                          className="block w-full rounded-md border-gray-300 px-11 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                          placeholder="0.00"
-                          value={data?.usdMaxSalary}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
+              </div>
             </div>
             <div className="col-span-6">
               <label
                 htmlFor="first-name"
                 className="block text-sm font-medium text-gray-700"
               >
-                Duracion estimada de la busqueda
+                Beneficios
               </label>
-              <select
-                id="modality"
-                name="modality"
-                autoComplete="modality-name"
-                className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+              <textarea
+                value={data?.commodities}
+                id="about"
+                name="about"
+                rows={4}
+                className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                placeholder="Requisitos principales para la realizacion del trabajo"
+                defaultValue={''}
+              />
+            </div>
+            <div className="col-span-6">
+              <label
+                htmlFor="first-name"
+                className="block text-sm font-medium text-gray-700"
               >
-                <option>2 Meses</option>
-                <option>1 Semana</option>
-                <option>2 Semanas</option>
-                <option>1 Mes</option>
-                <option>3 Meses</option>
-              </select>
+                Requisitos
+              </label>
+              <textarea
+                value={data?.requirements}
+                id="about"
+                name="about"
+                rows={4}
+                className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                placeholder="Beneficios que se le brindaran de parte de la empresa"
+                defaultValue={''}
+              />
+            </div>
+            <div className="col-span-12">
               <div className="mt-6 flex justify-end">
                 {/* TO DO: This should navigate using the jobPosting id. */}
                 <Link href={`/positions/${data.id}/board`}>
@@ -320,7 +262,7 @@ const Index = () => {
                     type="button"
                     className="mt-3 inline-flex w-56 justify-center rounded-3xl border bg-indigo-600 p-4 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:text-sm"
                   >
-                    Ver candidatxs
+                    Ver candidatos
                   </a>
                 </Link>
               </div>

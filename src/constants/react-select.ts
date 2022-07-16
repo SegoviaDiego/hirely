@@ -5,11 +5,12 @@ export const technologiesOptions = [
   { label: 'NodeJs', value: 2 },
   { label: 'JavaScript', value: 3 },
   { label: 'Flutter', value: 4 },
-  { label: 'ReactNative', value: 4 },
-  { label: 'Java', value: 5 },
-  { label: 'Rust', value: 6 },
-  { label: 'PostgreSQL', value: 7 },
-  { label: 'Prisma', value: 8 },
+  { label: 'ReactNative', value: 5 },
+  { label: 'Java', value: 6 },
+  { label: 'Rust', value: 7 },
+  { label: 'PostgreSQL', value: 8 },
+  { label: 'Prisma', value: 9 },
+  { label: 'Angular', value: 10 },
 ];
 
 export const customStyles: StylesConfig = {
